@@ -43,6 +43,7 @@
 	<a href="springmvc/testRequestParam?username=chenxin&age=11">Test RequestParam</a>
 	<br />
 	<a href="springmvc/testRequestHeader">Test RequestHeader</a>
-	
+	<br />
+	<a href="springmvc/testCookieValue">Test CookieValue</a>
 </body>
 </html>

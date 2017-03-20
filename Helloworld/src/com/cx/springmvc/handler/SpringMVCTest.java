@@ -1,6 +1,7 @@
 package com.cx.springmvc.handler;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SpringMVCTest {
 
 	private static final String SUCCESS = "success";
+	/**
+	 * 了解
+	 * @CookieValue 映射一个cookie值，属性同@RequestParam
+	 * */
+	@RequestMapping("/testCookieValue")
+	public String testCookieValue(@CookieValue("JSESSIONID") String sid){
+		System.out.println("testCookieValue"+sid);
+		return SUCCESS;
+	}
 	/**
 	 * 了解：
 	 * 用法同@RequestParam

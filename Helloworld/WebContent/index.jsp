@@ -48,21 +48,40 @@
 	<a href="springmvc/testCookieValue">Test CookieValue</a>
 	<br />
 	<form action="springmvc/testPojo">
-		username: <input type="text" name="username">
-		<br/>
-		password: <input type="password" name="password"> 
-		<br/>
-		email:	  <input type="text" name="email">
-		<br/>
-		age:	  <input type="text" name="age">
-		<br/>
-		city:	  <input type="text" name="address.city">
-		<br/>
-		province:	  <input type="text" name="address.province">
-		<br/>
-		<input type="submit" name="Submit">
-		<br/>
-		<a href="springmvc/testServletApI">Test ServletApI</a>
+		username: <input type="text" name="username"> <br /> password:
+		<input type="password" name="password"> <br /> email: <input
+			type="text" name="email"> <br /> age: <input type="text"
+			name="age"> <br /> city: <input type="text"
+			name="address.city"> <br /> province: <input type="text"
+			name="address.province"> <br /> <input type="submit"
+			name="Submit">
 	</form>
+	<br />
+	<a href="springmvc/testServletApI">Test ServletApI</a>
+	<br />
+	<a href="springmvc/testModelAndView">Test ModelAndView</a>
+	<br />
+	<a href="springmvc/testMap">Test Map</a>
+	<br />
+	<a href="springmvc/testSessionAttribute">Test SessionAttribute</a>
+
+
+	<br />
+	<!-- 模拟修改操作
+		 1.原始数据为：1,Tom,123456,tom@qq.com,12
+		 2.密码不能被修改
+		 3.表单回显，模拟操作直接在表单填写对应的属性值
+	 -->
+	<form action="springmvc/testModelAttribute" method="post">
+		<input type="hidden" name="id" value="1"/>
+		username:<input type="text" name="username" value="Tom" />
+		<br />
+		<br />
+		email:<input type="text" name="email" value="tom@qq.com" />
+		<br />
+		age:<input type="text" name="age" value="12" />
+		<input type="submit" value="Submit" />
+	</form>
+
 </body>
 </html>

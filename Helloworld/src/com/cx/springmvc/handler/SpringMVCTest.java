@@ -2,43 +2,127 @@ package com.cx.springmvc.handler;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cx.springmvc.entities.User;
 
+//@SessionAttributes(value = { "user" }, types = { String.class })
 @Controller
 @RequestMapping("/springmvc")
 public class SpringMVCTest {
 
 	private static final String SUCCESS = "success";
+	/**
+	 * 由@ModelAttribute 标记的方法，会在每个目标方法执行之前被SpringMVC调用
+	 * **/
+	@ModelAttribute
+	public void getUser(@RequestParam(value="id",required=false) Integer id,
+			Map<String,Object> map){
+		if(id!=null){
+			//模拟从数据库中获取对象
+			User user = new User(1,"Tom","123456","tom@qq.com",12);
+			System.out.println("从数据库中获取一个对象"+user);
+			map.put("user", user);
+		}
+	}
+	/**
+	 * 运行流程
+	 * 1.执行 @ModelAttribute 注释修饰的方法：从数据库中取出对象，把对象放入到map中。键为：user
+	 * 2.SpringMVC从Map中取出user对象，并把表单的请求参数赋给User对象对应的属性
+	 * 3.SpringMVC把上述对象传入目标方法的参数
+	 * 
+	 * 注意在 @ModelAttribute 修饰的方法中，放入到Map时的键需要和目标方法入参类型的第一个字
+	 * 母小写的字符串一致
+	 * 
+	 * 源码分析流程
+	 * 1.调用@ModelAttribute注解修饰的方法。实际上把@ModelAttribute方法中的Map中的数据放在了implicitModel中
+	 * 2.解析请求处理器的目标参数，实际上该目标参数来自于WebDataBinder对象的target属性
+	 * 1)创建WebDataBinder对象
+	 * ①确定objecName属性：若传入的attrName属性值为“”，则objectName为类名第一个字母小写
+	 * 注意：attrName若目标方法的POJO属性使用了 @ModelAttribute 来修饰则attrName即为 @ModelAttribute 的
+	 * value属性值
+	 * ②确定target属性：
+	 * >在implicitModel中查找attrName对应的属性值，若存在，返回
+	 * >如果不存在则验证当前handler是否用了 @SessionAttribute 进行修饰，若使用了则尝试从session中获取
+	 * attrName所对应的属性值，若没有则抛出异常
+	 * >如果Handler没有使用@SessionAttribute进行修饰或@SessionAttribute中没有使用value值指定的键
+	 * 和attrName相互匹配，则通过反射创建了POJO对象
+	 * 2)SpringMVC把表单的请求参数赋给了WebDataBinder的target对应的属性
+	 * 3)SpringMVC会把WebDataBinder的attrName和target给到implicitModel，进而传到request域对象中
+	 * 4)把WebDataBinder的target作为参数传递给目标方法的入参
+	 * **/
+	@RequestMapping("/testModelAttribute")
+	public String testModelAttribute(User user){
+		System.out.println("修改："+user);
+		return SUCCESS;
+	}
+
+	/**
+	 * @SessionAttributes 
+	 * 除了可以通过属性名指定需要放到会话中的属性外(实际上使用的是value属性值)，
+	 * 还可以通过模型属性的对象类型指定哪些模型属性需要放到会话中(实际上使用的是type属性值)
+	 * 这个注解只能放在类的上面，而不能放在方法的上面
+	 **/
+	@RequestMapping("/testSessionAttribute")
+	public String testSessionAttribute(Map<String, Object> map) {
+		User user = new User("tom", "123", "chen@qq.com", 11);
+		map.put("user", user);
+		map.put("ahe", "aadhuw");
+		return SUCCESS;
+	}
+
+	/**
+	 * 目标方法可以添加Map(实际上也可以是Model类型或ModelMap类型)类型的参数
+	 **/
+	@RequestMapping("/testMap")
+	public String testMap(Map<String, Object> map) {
+		System.out.println(map.getClass().getName());
+		map.put("names", Arrays.asList("tom", "jerry", "mike"));
+		return SUCCESS;
+	}
+
+	/**
+	 * 目标方法的返回值可以使ModelAndView类型。 其中可以包含视图和模型信息
+	 * SpringMVC会把ModelAndView的model中的数据放入到request域对象中
+	 * 
+	 **/
+	@RequestMapping("/testModelAndView")
+	public ModelAndView testModelAndView() {
+		String viewName = SUCCESS;
+		ModelAndView modelAndView = new ModelAndView(viewName);
+		// 添加模型数据到ModelAndView中
+		modelAndView.addObject("time", new Date());
+		return modelAndView;
+	}
 
 	/**
 	 * 可以使用servlet原生的API作为目标方法的参数 具体支持以下类型 HttpServletRequest
-	 * HttpServletResponse 
-	 * HttpSession 
-	 * java.security.Principal 
-	 * Locale
-	 * InputStream 
-	 * OutputStream 
-	 * Reader 
-	 * Writer
-	 * @throws IOException 
+	 * HttpServletResponse HttpSession java.security.Principal Locale
+	 * InputStream OutputStream Reader Writer
+	 * 
+	 * @throws IOException
 	 **/
 	@RequestMapping("/testServletApI")
-	public void testServletApI(HttpServletRequest request, HttpServletResponse response
-			,Writer out) throws IOException {
+	public void testServletApI(HttpServletRequest request, HttpServletResponse response, Writer out)
+			throws IOException {
 		System.out.println("testServletApI:" + request + "," + response);
-		//return SUCCESS;
+		// return SUCCESS;
 		out.write("hello spring");
 	}
 

@@ -1,5 +1,11 @@
 package com.cx.springmvc.handler;
 
+import java.io.IOException;
+import java.io.Writer;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,93 +14,117 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cx.springmvc.entities.User;
+
 @Controller
 @RequestMapping("/springmvc")
 public class SpringMVCTest {
 
 	private static final String SUCCESS = "success";
+
 	/**
-	 * ÁË½â
-	 * @CookieValue Ó³ÉäÒ»¸öcookieÖµ£¬ÊôĞÔÍ¬@RequestParam
-	 * */
+	 * å¯ä»¥ä½¿ç”¨servletåŸç”Ÿçš„APIä½œä¸ºç›®æ ‡æ–¹æ³•çš„å‚æ•° å…·ä½“æ”¯æŒä»¥ä¸‹ç±»å‹ HttpServletRequest
+	 * HttpServletResponse 
+	 * HttpSession 
+	 * java.security.Principal 
+	 * Locale
+	 * InputStream 
+	 * OutputStream 
+	 * Reader 
+	 * Writer
+	 * @throws IOException 
+	 **/
+	@RequestMapping("/testServletApI")
+	public void testServletApI(HttpServletRequest request, HttpServletResponse response
+			,Writer out) throws IOException {
+		System.out.println("testServletApI:" + request + "," + response);
+		//return SUCCESS;
+		out.write("hello spring");
+	}
+
+	/**
+	 * Spring MVC ä¼šæŒ‰è¯·æ±‚å‚æ•°åå’Œ POJOå±æ€§åè¿›è¡Œè‡ªåŠ¨åŒ¹ é…ï¼Œè‡ªåŠ¨ä¸ºè¯¥å¯¹è±¡å¡«å……å±æ€§å€¼ã€‚æ”¯æŒçº§è”å±æ€§ã€‚
+	 * å¦‚ï¼šdept.deptIdã€dept.address.tel ç­‰
+	 */
+	@RequestMapping("testPojo")
+	public String testPojo(User user) {
+		System.out.println("testPojo" + user);
+		return SUCCESS;
+	}
+
+	/**
+	 * äº†è§£
+	 * 
+	 * @CookieValue æ˜ å°„ä¸€ä¸ªcookieå€¼ï¼Œå±æ€§åŒ@RequestParam
+	 */
 	@RequestMapping("/testCookieValue")
-	public String testCookieValue(@CookieValue("JSESSIONID") String sid){
-		System.out.println("testCookieValue"+sid);
+	public String testCookieValue(@CookieValue("JSESSIONID") String sid) {
+		System.out.println("testCookieValue" + sid);
 		return SUCCESS;
 	}
+
 	/**
-	 * ÁË½â£º
-	 * ÓÃ·¨Í¬@RequestParam
-	 * ×÷ÓÃÊÇÓ³ÉäÇëÇóÍ·ĞÅÏ¢
-	 * */
+	 * äº†è§£ï¼š ç”¨æ³•åŒ@RequestParam ä½œç”¨æ˜¯æ˜ å°„è¯·æ±‚å¤´ä¿¡æ¯
+	 */
 	@RequestMapping("/testRequestHeader")
-	public String testRequestHeader(@RequestHeader(value="Accept-Language") String al){
-		System.out.println("testRequestHeader"+al);
+	public String testRequestHeader(@RequestHeader(value = "Accept-Language") String al) {
+		System.out.println("testRequestHeader" + al);
 		return SUCCESS;
 	}
-	
+
 	/**
-	 * @RequestParamÀ´Ó³ÉäÇëÇó²ÎÊı£¬
-	 * ÆäÖĞvalue¼´ÇëÇó²ÎÊıµÄ²ÎÊıÃû
-	 * required	¸Ã²ÎÊıÊÇ·ñÎª±ØĞë£¬Ä¬ÈÏÎªtrue
-	 * defaultValue ÇëÇó²ÎÊıµÄÄ¬ÈÏÖµ
-	 * **/
-	@RequestMapping(value= "/testRequestParam")
-	public String testRequestParam(@RequestParam(value="username") String un,
-			@RequestParam(value = "age",required=false,defaultValue="0") Integer age){
-		System.out.println("testRequestParam:" + un+ age );
+	 * @RequestParamæ¥æ˜ å°„è¯·æ±‚å‚æ•°ï¼Œ å…¶ä¸­valueå³è¯·æ±‚å‚æ•°çš„å‚æ•°å required è¯¥å‚æ•°æ˜¯å¦ä¸ºå¿…é¡»ï¼Œé»˜è®¤ä¸ºtrue
+	 * defaultValue è¯·æ±‚å‚æ•°çš„é»˜è®¤å€¼
+	 **/
+	@RequestMapping(value = "/testRequestParam")
+	public String testRequestParam(@RequestParam(value = "username") String un,
+			@RequestParam(value = "age", required = false, defaultValue = "0") Integer age) {
+		System.out.println("testRequestParam:" + un + age);
 		return SUCCESS;
 	}
-	
+
 	/**
-	 * REST·ç¸ñµÄURL
-	 * ÒÔCRUDÎªÀı
-	 * ĞÂÔö /order POST
-	 * ĞŞ¸Ä /order/1 PUT			update?id=1
-	 * »ñÈ¡ /order/1 GET			get?id=1
-	 * É¾³ı /order/1 DELETE		delete?id=1
+	 * RESTé£æ ¼çš„URL ä»¥CRUDä¸ºä¾‹ æ–°å¢ /order POST ä¿®æ”¹ /order/1 PUT update?id=1 è·å– /order/1
+	 * GET get?id=1 åˆ é™¤ /order/1 DELETE delete?id=1
 	 * 
-	 * ÈçºÎ·¢ËÍPUTÇëÇóºÍDELETEÇëÇó
-	 * 1.ĞèÒªÅäÖÃHiddenHttpMethodFilter
-	 * 2.ĞèÒª·¢ËÍPOSTÇëÇó
-	 * 3.ĞèÒªÔÚ·¢ËÍPOSTÇëÇóÊ±Ğ¯´øÒ»¸öname="_method"µÄÒş²ØÓò£¬ÖµÎªDELETE»òPUT
+	 * å¦‚ä½•å‘é€PUTè¯·æ±‚å’ŒDELETEè¯·æ±‚ 1.éœ€è¦é…ç½®HiddenHttpMethodFilter 2.éœ€è¦å‘é€POSTè¯·æ±‚
+	 * 3.éœ€è¦åœ¨å‘é€POSTè¯·æ±‚æ—¶æºå¸¦ä¸€ä¸ªname="_method"çš„éšè—åŸŸï¼Œå€¼ä¸ºDELETEæˆ–PUT
 	 * 
-	 * ÔÚSpringMVCµÄÄ¿±ê·½·¨ÖĞÈçºÎµÃµ½id
-	 * Ê¹ÓÃ@PathVariable×¢½â
-	 * */
-	@RequestMapping(value="/testRest/{id}",method=RequestMethod.GET)
-	public String testREST(@PathVariable("id") Integer id){
-		System.out.println("testREST GET"+id);
+	 * åœ¨SpringMVCçš„ç›®æ ‡æ–¹æ³•ä¸­å¦‚ä½•å¾—åˆ°id ä½¿ç”¨@PathVariableæ³¨è§£
+	 */
+	@RequestMapping(value = "/testRest/{id}", method = RequestMethod.GET)
+	public String testREST(@PathVariable("id") Integer id) {
+		System.out.println("testREST GET" + id);
 		return SUCCESS;
 	}
-	
-	@RequestMapping(value="/testRest",method=RequestMethod.POST)
-	public String testREST(){
+
+	@RequestMapping(value = "/testRest", method = RequestMethod.POST)
+	public String testREST() {
 		System.out.println("testREST POST");
 		return SUCCESS;
 	}
-	
-	@RequestMapping(value="/testRest/{id}",method=RequestMethod.DELETE)
-	public String testRESTDel(@PathVariable("id") Integer id){
-		System.out.println("testREST DELETE"+id);
+
+	@RequestMapping(value = "/testRest/{id}", method = RequestMethod.DELETE)
+	public String testRESTDel(@PathVariable("id") Integer id) {
+		System.out.println("testREST DELETE" + id);
 		return SUCCESS;
 	}
-	
-	@RequestMapping(value="/testRest/{id}",method=RequestMethod.PUT)
-	public String testRESTPut(@PathVariable("id") Integer id){
-		System.out.println("testREST put"+id);
+
+	@RequestMapping(value = "/testRest/{id}", method = RequestMethod.PUT)
+	public String testRESTPut(@PathVariable("id") Integer id) {
+		System.out.println("testREST put" + id);
 		return SUCCESS;
 	}
-	
+
 	/**
-	 * @PathVariabl ¿ÉÒÔÀ´Ó³ÉäURLÖĞµÄÕ¼Î»·ûµ½Ä¿±ê·½·¨µÄ²ÎÊıÖĞ
-	 * T
-	 * */
+	 * @PathVariabl å¯ä»¥æ¥æ˜ å°„URLä¸­çš„å ä½ç¬¦åˆ°ç›®æ ‡æ–¹æ³•çš„å‚æ•°ä¸­ T
+	 */
 	@RequestMapping("/testPathVariable/{id}")
-	public String testPathVariable(@PathVariable("id") Integer id){
-		System.out.println("testPathVariable"+id);
+	public String testPathVariable(@PathVariable("id") Integer id) {
+		System.out.println("testPathVariable" + id);
 		return SUCCESS;
 	}
+
 	@RequestMapping("/testAntPath/*/abc")
 	public String testAntPath() {
 		System.out.println("testAntPath");
@@ -102,7 +132,7 @@ public class SpringMVCTest {
 	}
 
 	/**
-	 * ÁË½â£º¿ÉÒÔÊ¹ÓÃpramasºÍheadersÀ´¸ü¼Ó¾«È·µÄÓ³ÉäÇëÇó£¬ÕâÁ½¸öÖ§³Ö¼òµ¥µÄ±í´ïÊ½
+	 * äº†è§£ï¼šå¯ä»¥ä½¿ç”¨pramaså’Œheadersæ¥æ›´åŠ ç²¾ç¡®çš„æ˜ å°„è¯·æ±‚ï¼Œè¿™ä¸¤ä¸ªæ”¯æŒç®€å•çš„è¡¨è¾¾å¼
 	 * 
 	 */
 	@RequestMapping(value = "testParamsAndHeaders", params = { "username", "age!=10" }, headers = {
@@ -113,7 +143,7 @@ public class SpringMVCTest {
 	}
 
 	/**
-	 * Ê¹ÓÃvalueÊôĞÔÀ´Ö¸¶¨ÇëÇóurl Ê¹ÓÃmethodÊôĞÔÀ´Ö¸¶¨ÇëÇó·½Ê½
+	 * ä½¿ç”¨valueå±æ€§æ¥æŒ‡å®šè¯·æ±‚url ä½¿ç”¨methodå±æ€§æ¥æŒ‡å®šè¯·æ±‚æ–¹å¼
 	 */
 	@RequestMapping(value = "/testMethod", method = RequestMethod.POST)
 	public String testMethod() {
@@ -122,9 +152,9 @@ public class SpringMVCTest {
 	}
 
 	/**
-	 * 1.@RequestMapping¼È¿ÉÒÔĞŞÊÎ·½·¨£¬Ò²¿ÉÒÔĞŞÊÎÀà 2. 1£©Àà¶¨Òå´¦£ºÌá¹©³õ²½µÄÇëÇóÓ³ÉäĞÅÏ¢¡£Ïà¶ÔÓÚwebÓ¦ÓÃµÄ¸ùÄ¿Â¼
-	 * 2£©·½·¨´¦£ºÌá¹©½øÒ»²½µÄÏ¸·ÖÓ³ÉäĞÅÏ¢¡£Ïà¶ÔÓÚÀà¶¨Òå³öµÄURL¡£
-	 * ÈôÀà¶¨Òå´¦Î´±ê¼Ç@RequestMapping£¬Ôò·½·¨´¦±ê¼ÇµÄURLÏà¶ÔÓÚwebÓ¦ÓÃµÄ¸ùÄ¿Â¼
+	 * 1.@RequestMappingæ—¢å¯ä»¥ä¿®é¥°æ–¹æ³•ï¼Œä¹Ÿå¯ä»¥ä¿®é¥°ç±» 2. 1ï¼‰ç±»å®šä¹‰å¤„ï¼šæä¾›åˆæ­¥çš„è¯·æ±‚æ˜ å°„ä¿¡æ¯ã€‚ç›¸å¯¹äºwebåº”ç”¨çš„æ ¹ç›®å½•
+	 * 2ï¼‰æ–¹æ³•å¤„ï¼šæä¾›è¿›ä¸€æ­¥çš„ç»†åˆ†æ˜ å°„ä¿¡æ¯ã€‚ç›¸å¯¹äºç±»å®šä¹‰å‡ºçš„URLã€‚
+	 * è‹¥ç±»å®šä¹‰å¤„æœªæ ‡è®°@RequestMappingï¼Œåˆ™æ–¹æ³•å¤„æ ‡è®°çš„URLç›¸å¯¹äºwebåº”ç”¨çš„æ ¹ç›®å½•
 	 */
 	@RequestMapping("/testRequestMapping")
 	public String testRequestMapping() {

@@ -22,14 +22,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cx.springmvc.entities.User;
 
-//@SessionAttributes(value = { "user" }, types = { String.class })
+@SessionAttributes(value = { "user" }, types = { String.class })
 @Controller
 @RequestMapping("/springmvc")
 public class SpringMVCTest {
 
 	private static final String SUCCESS = "success";
 	/**
-	 * 由@ModelAttribute 标记的方法，会在每个目标方法执行之前被SpringMVC调用
+	 * 1.由@ModelAttribute 标记的方法，会在每个目标方法执行之前被SpringMVC调用
+	 * @ModelAttribute 注解也可以来修饰目标方法POJO类型的入参，其value属性值有如下的作用
+	 * 1)SpringMVC会使用value属性值在implicitModel中查找对应的对象，若存在则会直接传入到目标方法的入参中
+	 * 2)SpringMVC会以value为key，POJO类型的对象为value，传入到request中
 	 * **/
 	@ModelAttribute
 	public void getUser(@RequestParam(value="id",required=false) Integer id,

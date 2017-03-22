@@ -28,6 +28,21 @@ import com.cx.springmvc.entities.User;
 public class SpringMVCTest {
 
 	private static final String SUCCESS = "success";
+	@RequestMapping("/testRedirect")
+	public String testRedirect(){
+		System.out.println("testRedirect");
+		return "redirect:/index.jsp";
+	}
+	@RequestMapping("/testView")
+	public String testView(){
+		System.out.println("testView");
+		return "helloView";
+	}
+	@RequestMapping("/testViewAndViewResolver")
+	public String testViewAndViewResolver(){
+		System.out.println("testViewAndViewResolver");
+		return SUCCESS;
+	}
 	/**
 	 * 1.由@ModelAttribute 标记的方法，会在每个目标方法执行之前被SpringMVC调用
 	 * @ModelAttribute 注解也可以来修饰目标方法POJO类型的入参，其value属性值有如下的作用

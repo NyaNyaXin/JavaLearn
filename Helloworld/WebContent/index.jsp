@@ -48,10 +48,10 @@
 	<a href="springmvc/testCookieValue">Test CookieValue</a>
 	<br />
 	<form action="springmvc/testPojo">
-		username: <input type="text" name="username"> <br /> password:
-		<input type="password" name="password"> <br /> email: <input
-			type="text" name="email"> <br /> age: <input type="text"
-			name="age"> <br /> city: <input type="text"
+		username: <input type="text" name="username"> <br />
+		password: <input type="password" name="password"> <br />
+		email: <input type="text" name="email"> <br /> age: <input
+			type="text" name="age"> <br /> city: <input type="text"
 			name="address.city"> <br /> province: <input type="text"
 			name="address.province"> <br /> <input type="submit"
 			name="Submit">
@@ -73,15 +73,17 @@
 		 3.表单回显，模拟操作直接在表单填写对应的属性值
 	 -->
 	<form action="springmvc/testModelAttribute" method="post">
-		<input type="hidden" name="id" value="1"/>
-		username:<input type="text" name="username" value="Tom" />
-		<br />
-		<br />
-		email:<input type="text" name="email" value="tom@qq.com" />
-		<br />
-		age:<input type="text" name="age" value="12" />
-		<input type="submit" value="Submit" />
+		<input type="hidden" name="id" value="1" /> username:<input
+			type="text" name="username" value="Tom" /> <br /> <br /> email:<input
+			type="text" name="email" value="tom@qq.com" /> <br /> age:<input
+			type="text" name="age" value="12" /> <input type="submit"
+			value="Submit" />
 	</form>
-
+	<br>
+	<a href="springmvc/testViewAndViewResolver">testViewAndViewResolver</a>
+	<br>
+	<a href="springmvc/testView">testView</a>
+	<br />
+	<a href="springmvc/testRedirect">testRedirect</a>
 </body>
 </html>

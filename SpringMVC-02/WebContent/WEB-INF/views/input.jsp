@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.Map" %>
-<%@page import="java.util.HashMap" %>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,9 +18,19 @@
 			command 的表单 bean，如果该属性值也不存在，则会
 			发生错误。
 	 -->
-	<form:form action="emp" method="POST" modelAttribute="employee">
+	<form:form action="${pageContext.request.contextPath }/emp" method="POST"
+		modelAttribute="employee">
 		<!-- path属性对一个html表单标签的name属性 -->
-	 	LastName:<form:input path="lastName" />
+		<c:if test="${employee.id == null }">
+			LastName:<form:input path="lastName" />
+		</c:if>
+		<c:if test="${employee.id != null }">
+			<form:hidden path="id" />
+			<%-- 对于_method不能使用form:hidden标签，因为modeAttribute对应的bean中没有_method
+				这个属性，应该使用<input>标签
+			--%>
+			<input type="hidden" name="_method" value="PUT">
+		</c:if>
 		<br />
 	 	Email:<form:input path="email" />
 		<br />
@@ -30,8 +41,8 @@
 				request.setAttribute("genders", genders);
 		%>
 		Gender:
-		<br/>
-		<form:radiobuttons path="gender" items="${genders }" delimiter="<br/>"/>
+		<br />
+		<form:radiobuttons path="gender" items="${genders }" delimiter="<br/>" />
 		<br />
 		Department:<form:select path="department.id" items="${departments }"
 			itemLabel="departmentName" itemValue="id"></form:select>

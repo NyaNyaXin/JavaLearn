@@ -11,6 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<form action="testConversionServiceConverter" >
+	<!-- lastname-email-gender-department.id 例如：GG-gg@16.com-0-105 -->
+		Employee:<input type="text" name="employee">
+		<input type="submit" value="Submit">
+	</form>
+	<br />
 	<!-- 1.使用form标签的原因：
 		  快速开发出表单页面，可以更方便的进行表单值的回显
 		 2.注意：可以通过 modelAttribute 属性指定绑定的模型属性，若 
@@ -18,8 +24,8 @@
 			command 的表单 bean，如果该属性值也不存在，则会
 			发生错误。
 	 -->
-	<form:form action="${pageContext.request.contextPath }/emp" method="POST"
-		modelAttribute="employee">
+	<form:form action="${pageContext.request.contextPath }/emp"
+		method="POST" modelAttribute="employee">
 		<!-- path属性对一个html表单标签的name属性 -->
 		<c:if test="${employee.id == null }">
 			LastName:<form:input path="lastName" />
@@ -46,6 +52,14 @@
 		<br />
 		Department:<form:select path="department.id" items="${departments }"
 			itemLabel="departmentName" itemValue="id"></form:select>
+		<!-- 
+			1.数据类型转换的问题
+			2.数据类型格式化的问题
+			3.数据校验的问题
+		 -->
+		<!-- 
+		Birth:<form:input path="birth"/>
+		 -->
 		<input type="submit" value="Submit">
 	</form:form>
 </body>

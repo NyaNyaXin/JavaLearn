@@ -24,11 +24,17 @@
 
 	<!-- 配置ConversionService -->
 	<bean id="conversionService"
-		class="org.springframework.context.support.ConversionServiceFactoryBean">
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
 				<ref bean="employeeConverter" />
 			</set>
 		</property>
 	</bean>
+
+	<!-- 配置国际化资源文件 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n"></property>
+		</bean>
 </beans>

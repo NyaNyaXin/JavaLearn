@@ -11,10 +11,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="testConversionServiceConverter" >
-	<!-- lastname-email-gender-department.id 例如：GG-gg@16.com-0-105 -->
-		Employee:<input type="text" name="employee">
-		<input type="submit" value="Submit">
+	<form action="testConversionServiceConverter">
+		<!-- lastname-email-gender-department.id 例如：GG-gg@16.com-0-105 -->
+		Employee:<input type="text" name="employee"> <input
+			type="submit" value="Submit">
 	</form>
 	<br />
 	<!-- 1.使用form标签的原因：
@@ -26,9 +26,12 @@
 	 -->
 	<form:form action="${pageContext.request.contextPath }/emp"
 		method="POST" modelAttribute="employee">
+		<form:errors path="*"></form:errors>
+		<br />
 		<!-- path属性对一个html表单标签的name属性 -->
 		<c:if test="${employee.id == null }">
 			LastName:<form:input path="lastName" />
+			<form:errors path="lastName"></form:errors>
 		</c:if>
 		<c:if test="${employee.id != null }">
 			<form:hidden path="id" />
@@ -39,6 +42,7 @@
 		</c:if>
 		<br />
 	 	Email:<form:input path="email" />
+	 	<form:errors path="email"></form:errors>
 		<br />
 		<%
 			Map<String, String> genders = new HashMap();
@@ -56,10 +60,23 @@
 			1.数据类型转换的问题
 			2.数据类型格式化的问题
 			3.数据校验的问题
+			1)如何校验？注解？
+			①使用JSR 303验证标准
+			②加入hibernate validator验证框架
+			③在Spring配置文件中添加配置mvc:annotation-dirven
+			④在bean的属性上添加对应的注解
+			⑤在目标方法bean类型的前面添加@Valid注解
+			2)验证出错转向到哪一个页面
+			注意：需校验的 Bean 对象和其绑定结果对象或错误对象时成对出现的，它们
+			之间不允许声明其他的入参
+			3)错误消息如何显示,如何把错误消息进行国际化
 		 -->
-		<!-- 
-		Birth:<form:input path="birth"/>
-		 -->
+		 
+		Birth:<form:input path="birth" />
+		<form:errors path="birth"></form:errors>
+		<br />
+		Salary:<form:input path="salary" />
+		<br />
 		<input type="submit" value="Submit">
 	</form:form>
 </body>

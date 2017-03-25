@@ -27,5 +27,15 @@
 	<a href="emps">List All Employees</a>
 	<br />
 	<a href="testJson" id="testJson">Test Json</a>
+	
+	<form action="testHttpMessageConverter" method="post" enctype="multipart/form-data">
+		File:<input type="file" name="file" />
+		Desc:<input type="text" name="desc" />
+		<input type="submit" value="submit">
+	</form>
+	
+	<br/>
+	
+	<a href="testResponseEntity">testResponseEntity</a>
 </body>
 </html>

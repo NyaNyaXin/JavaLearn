@@ -37,7 +37,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-orm-4.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-4.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-4.0.0.RELEASE.jar" sourcepath="F:/Framework/J2EEFramework/Spring/Spring4.0.0/spring-framework-4.0.0.RELEASE.zip"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.0.0.RELEASE.jar" sourcepath="F:/Framework/J2EEFramework/Spring/Spring4.0.0"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.0.0.RELEASE.jar" sourcepath="F:/Framework/J2EEFramework/Spring/Spring4.0.0/spring-framework-4.0.0.RELEASE.zip"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/validation-api-1.1.0.CR1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>

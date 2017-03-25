@@ -24,14 +24,22 @@
 </script>
 </head>
 <body>
+
+	<form action="testFileUpload" method="post"
+		enctype="multipart/form-data">
+		File:<input type="file" name="file" /> 
+		Desc:<input type="text"name="desc" /> 
+		<input type="submit" value="submit">
+	</form>
 	<a href="emps">List All Employees</a>
 	<br />
 	<a href="testJson" id="testJson">Test Json</a>
 
 	<form action="testHttpMessageConverter" method="post"
 		enctype="multipart/form-data">
-		File:<input type="file" name="file" /> Desc:<input type="text"
-			name="desc" /> <input type="submit" value="submit">
+		File:<input type="file" name="file" /> 
+		Desc:<input type="text"name="desc" /> 
+		<input type="submit" value="submit">
 	</form>
 
 	<br />

@@ -27,9 +27,8 @@
 
 	<form action="testFileUpload" method="post"
 		enctype="multipart/form-data">
-		File:<input type="file" name="file" /> 
-		Desc:<input type="text"name="desc" /> 
-		<input type="submit" value="submit">
+		File:<input type="file" name="file" /> Desc:<input type="text"
+			name="desc" /> <input type="submit" value="submit">
 	</form>
 	<a href="emps">List All Employees</a>
 	<br />
@@ -37,9 +36,8 @@
 
 	<form action="testHttpMessageConverter" method="post"
 		enctype="multipart/form-data">
-		File:<input type="file" name="file" /> 
-		Desc:<input type="text"name="desc" /> 
-		<input type="submit" value="submit">
+		File:<input type="file" name="file" /> Desc:<input type="text"
+			name="desc" /> <input type="submit" value="submit">
 	</form>
 
 	<br />
@@ -60,6 +58,10 @@
 	<br />
 	<a href="i18n">I18N PAGE</a>
 	<br />
-	<a href="testExceptionHandlerExceptionResolver?i=10">Test ExceptionHandlerExceptionResolver</a>
+	<a href="testExceptionHandlerExceptionResolver?i=10">Test
+		ExceptionHandlerExceptionResolver</a>
+	<br />
+	<a href="testResponseStatusExceptionResolver?i=10">Test
+		ResponseStatusExceptionResolver</a> 
 </body>
 </html>

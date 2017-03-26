@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,6 +35,16 @@ public class SpringMVCTest {
 	private EmployeeDao employeeDao;
 	@Autowired
 	private ResourceBundleMessageSource messageSource;
+	@ResponseStatus(reason="≤‚ ‘",value=HttpStatus.NOT_FOUND)
+	@RequestMapping("/testResponseStatusExceptionResolver")
+	public String testResponseStatusExceptionResolver(@RequestParam("i") int i){
+		if(i == 13){
+			throw new UsernameNotMatchPasswordException();
+		}else{
+			System.out.println("testResponseStatusExceptionResolver....");
+		}
+		return "success";
+	}
 	//@ExceptionHandler({RuntimeException.class})
 //	public ModelAndView arithmeticException2(Exception ex){	
 //		System.out.println("[≥ˆ“Ï≥£¡À]£∫"+ex);

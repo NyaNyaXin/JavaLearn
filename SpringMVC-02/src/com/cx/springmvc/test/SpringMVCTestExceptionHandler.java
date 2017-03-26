@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
-public class ExceptionHandle {
+public class SpringMVCTestExceptionHandler {
 	@ExceptionHandler({ArithmeticException.class})
 	public ModelAndView arithmeticException(Exception ex) {
 		System.out.println("------------>ณ๖า์ณฃมหฃบ" + ex);

@@ -62,6 +62,8 @@
 		ExceptionHandlerExceptionResolver</a>
 	<br />
 	<a href="testResponseStatusExceptionResolver?i=10">Test
-		ResponseStatusExceptionResolver</a> 
+		ResponseStatusExceptionResolver</a>
+	<a href="testDefaultHandlerExceptionResolver">Test
+		DefaultHandlerExceptionResolver</a> 
 </body>
 </html>

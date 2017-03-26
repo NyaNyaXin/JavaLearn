@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -35,6 +36,11 @@ public class SpringMVCTest {
 	private EmployeeDao employeeDao;
 	@Autowired
 	private ResourceBundleMessageSource messageSource;
+	@RequestMapping(value="/testDefaultHandlerExceptionResolver",method=RequestMethod.POST)
+	public String testDefaultHandlerExceptionResolver(){
+		System.out.println("testDefaultHandlerExceptionResolver.......");
+		return "error";
+	}
 	@ResponseStatus(reason="≤‚ ‘",value=HttpStatus.NOT_FOUND)
 	@RequestMapping("/testResponseStatusExceptionResolver")
 	public String testResponseStatusExceptionResolver(@RequestParam("i") int i){

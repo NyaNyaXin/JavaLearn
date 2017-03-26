@@ -36,6 +36,13 @@ public class SpringMVCTest {
 	private EmployeeDao employeeDao;
 	@Autowired
 	private ResourceBundleMessageSource messageSource;
+	
+	@RequestMapping("/testSimpleMappingExceptionResolver")
+	public String testSimpleMappingExceptionResolver(@RequestParam("i") int i){
+		String[] vals = new String[10];
+		System.out.println(vals[i]);
+		return "error";
+	}
 	@RequestMapping(value="/testDefaultHandlerExceptionResolver",method=RequestMethod.POST)
 	public String testDefaultHandlerExceptionResolver(){
 		System.out.println("testDefaultHandlerExceptionResolver.......");

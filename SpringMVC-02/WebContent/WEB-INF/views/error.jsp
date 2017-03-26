@@ -9,7 +9,7 @@
 <body>
 	Error Page。。。。。。。。
 	<br/>
-	${exception } 
+	${requestScope.ex } 
 	<br/> 
 	<a href="index.jsp">回到首页</a>
 </body>

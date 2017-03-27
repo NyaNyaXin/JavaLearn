@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
@@ -55,13 +55,11 @@
 		<!-- <constructor-arg> <ref bean="car"/> </constructor-arg> -->
 		<!-- 测试赋值null -->
 		<!-- <constructor-arg><null/></constructor-arg> -->
-		<!-- 测试级联属性赋值
-			注意：属性需要先初始化，后为级联属性赋值，否则将会有异常，和Struts2不同
-		-->
+		<!-- 测试级联属性赋值 注意：属性需要先初始化，后为级联属性赋值，否则将会有异常，和Struts2不同 -->
 		<constructor-arg ref="car"></constructor-arg>
 		<property name="car.maxSpeed" value="300"></property>
 	</bean>
-	
+
 	<!-- 测试如何配置集合属性 -->
 	<bean id="person3" class="com.cx.spring.beans.collections.Person">
 		<property name="name" value="Mike"></property>
@@ -69,8 +67,8 @@
 		<property name="cars">
 			<!-- 使用list节点为List类型的属性赋值 -->
 			<list>
-				<ref bean="car"/>
-				<ref bean="car2"/>
+				<ref bean="car" />
+				<ref bean="car2" />
 				<bean class="com.cx.spring.beans.Car">
 					<constructor-arg value="Ford"></constructor-arg>
 					<constructor-arg value="Changan"></constructor-arg>
@@ -91,7 +89,7 @@
 			</map>
 		</property>
 	</bean>
-	
+
 	<!-- 配置Properties属性值 -->
 	<bean id="dataSource" class="com.cx.spring.beans.collections.DataSource">
 		<property name="properties">
@@ -105,15 +103,22 @@
 		</property>
 	</bean>
 
-	<!-- 配置独立的集合bean，以供多个bean进行引用 ,需要导入util命名空间-->
+	<!-- 配置独立的集合bean，以供多个bean进行引用 ,需要导入util命名空间 -->
 	<util:list id="cars">
-		<ref bean="car"/>
-		<ref bean="car2"/>
+		<ref bean="car" />
+		<ref bean="car2" />
 	</util:list>
-	
+
 	<bean id="person4" class="com.cx.spring.beans.collections.Person">
 		<property name="name" value="Jack"></property>
 		<property name="age" value="29"></property>
 		<property name="cars" ref="cars"></property>
 	</bean>
+
+	<!-- 通过p命名空间为bean的属性赋值，需要先导入p命名空间,相对于传统的配置方式更加简洁 -->
+	<bean id="person5" class="com.cx.spring.beans.collections.Person"
+		p:age="30" p:name="Queen" p:cars-ref="cars">
+
+	</bean>
+
 </beans>

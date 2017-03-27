@@ -3,12 +3,23 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- 配置bean 
-		class:bean的全类名，通过反射的方式在IOC容器中创建bean,所以要求Bean中必须有无参构造器
-		id:标识容器中的bean。id值唯一
-	 -->
+	<!-- 配置bean class:bean的全类名，通过反射的方式在IOC容器中创建bean,所以要求Bean中必须有无参构造器 id:标识容器中的bean。id值唯一 -->
 	<bean class="com.cx.spring.beans.HelloWorld" id="helloWorld2">
+		<!-- 属性注入，通过setter方法进行注入，最常用 -->
 		<property name="name" value="Spring"></property>
+	</bean>
+
+	<!-- 通过构造方法来配置bean的属性 -->
+	<bean id="car" class="com.cx.spring.beans.Car">
+		<constructor-arg value="Audi" index="0"></constructor-arg>
+		<constructor-arg value="ShangHai" index="1"></constructor-arg>
+		<constructor-arg value="300000" type="double"></constructor-arg>
+	</bean>
+	<!-- 使用构造器注入属性值可以指定参数的位置和参数的类型，以区分重载的构造器 -->
+	<bean id="car2" class="com.cx.spring.beans.Car">
+		<constructor-arg value="BaoMa" type="java.lang.String"></constructor-arg>
+		<constructor-arg value="ShangHai" type="java.lang.String"></constructor-arg>
+		<constructor-arg value="240" type="int"></constructor-arg>
 	</bean>
 
 </beans>

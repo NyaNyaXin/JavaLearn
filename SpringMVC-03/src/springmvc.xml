@@ -24,6 +24,11 @@
 	 	1.使Spring的IOC容器扫描的包和SpringMVC的IOC容器扫描的包没有重合的部分
 	 	2.使用exclude-filter和include-filter子节点来规定只能扫描的注解
 	  -->
+	  
+	  <!-- 
+	  	SpringMVC的IOC容器中的bean可以引用SpringIOC容器中的bean。
+	  	反过来呢？反之则不行。SpringIOC容器中的bean不能引用SpringMVC IOC容器中的bean
+	   -->
 	<context:component-scan base-package="com.cx.springmvc" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>

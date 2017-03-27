@@ -3,8 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- 配置bean -->
-	<bean class="com.cx.spring.beans.HelloWorld" id="helloWorld">
+	<!-- 配置bean 
+		class:bean的全类名，通过反射的方式在IOC容器中创建bean,所以要求Bean中必须有无参构造器
+		id:标识容器中的bean。id值唯一
+	 -->
+	<bean class="com.cx.spring.beans.HelloWorld" id="helloWorld2">
 		<property name="name" value="Spring"></property>
 	</bean>
 

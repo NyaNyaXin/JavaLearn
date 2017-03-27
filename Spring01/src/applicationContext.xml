@@ -18,8 +18,46 @@
 	<!-- 使用构造器注入属性值可以指定参数的位置和参数的类型，以区分重载的构造器 -->
 	<bean id="car2" class="com.cx.spring.beans.Car">
 		<constructor-arg value="BaoMa" type="java.lang.String"></constructor-arg>
-		<constructor-arg value="ShangHai" type="java.lang.String"></constructor-arg>
-		<constructor-arg value="240" type="int"></constructor-arg>
+		<!-- 如果字面值包含特殊字符就需要使用<![CDATA[]]>包裹起来 -->
+		<!-- 属性值即可以使用value属性值，也可以使用value子节点进行配置 -->
+		<constructor-arg type="java.lang.String">
+			<value><![CDATA[<ShangHai^>]]></value>
+		</constructor-arg>
+		<constructor-arg type="int">
+			<value>250</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="person" class="com.cx.spring.beans.Person">
+		<property name="name" value="chenxin"></property>
+		<property name="age" value="24"></property>
+		<!-- 可以使用property的ref属性建立bean之间的引用关系 -->
+		<!-- <property name="car" ref="car2"></property> -->
+		<!-- <property name="car"> <ref bean="car2"/> </property> -->
+		<!-- 内部bean ,不能被外部引用，只能在内部使用 -->
+
+		<property name="car">
+			<bean class="com.cx.spring.beans.Car">
+				<constructor-arg value="Ford"></constructor-arg>
+				<constructor-arg value="Changan"></constructor-arg>
+				<constructor-arg value="200000" type="double"></constructor-arg>
+			</bean>
+		</property>
+
+		<property name="car.maxSpeed" value="260"></property>
+	</bean>
+
+	<bean id="person2" class="com.cx.spring.beans.Person">
+		<constructor-arg value="Jerry"></constructor-arg>
+		<constructor-arg value="15"></constructor-arg>
+		<!-- <constructor-arg> <ref bean="car"/> </constructor-arg> -->
+		<!-- 测试赋值null -->
+		<!-- <constructor-arg><null/></constructor-arg> -->
+		<!-- 测试级联属性赋值
+			注意：属性需要先初始化，后为级联属性赋值，否则将会有异常，和Struts2不同
+		-->
+		<constructor-arg ref="car"></constructor-arg>
+		<property name="car.maxSpeed" value="300"></property>
 	</bean>
 
 </beans>

@@ -30,5 +30,8 @@ public class Main {
 
 		car = (Car) ctx.getBean("car2");
 		System.out.println(car);
+		
+		Person person = (Person) ctx.getBean("person");
+		System.out.println(person.toString());
 	}
 }

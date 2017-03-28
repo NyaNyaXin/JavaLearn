@@ -14,7 +14,7 @@
 
 	<bean id="car" class="com.cx.spring.beans.autowire.Car" p:brand="Audi"
 		p:price="300000"></bean>
-	<!-- 要求：在配置person时，必须有一个关联的car！换句话说，person这个bean依赖于Car这个bean -->
+	<!-- 要求：在配置person时，必须有一个关联的car！换句话说，person这个bean依赖于Car这个bean ，如果没有，则会报错-->
 	<bean class="com.cx.spring.beans.autowire.Person" id="person"
 		p:name="Tom" p:address-ref="address2" depends-on="car" p:car-ref="car"></bean>
 

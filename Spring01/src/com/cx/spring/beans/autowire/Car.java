@@ -44,4 +44,10 @@ public class Car {
 		return "Car [brand=" + brand + ", price=" + price + "]";
 	}
 
+	public Car() {
+		System.out.println("Car's Constructor.......");
+	}
+	
+	
+
 }

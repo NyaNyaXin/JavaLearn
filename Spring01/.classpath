@@ -7,5 +7,7 @@
 	<classpathentry kind="lib" path="lib/spring-context-4.0.0.RELEASE.jar" sourcepath="F:/Framework/J2EEFramework/Spring/Spring4.0.0/spring-framework-4.0.0.RELEASE.zip"/>
 	<classpathentry kind="lib" path="lib/spring-core-4.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-expression-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.41-bin.jar"/>
+	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

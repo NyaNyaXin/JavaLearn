@@ -15,5 +15,5 @@
 		byType：根据bean的类型和当前bean的属性的类型进行自动装配,若IOC容器中有1个以上的类型匹配的bean，则抛异常 -->
 	<bean id="person" class="com.cx.spring.beans.autowire.Person"
 		p:name="Tom" autowire="byType"></bean>
-
+	
 </beans>

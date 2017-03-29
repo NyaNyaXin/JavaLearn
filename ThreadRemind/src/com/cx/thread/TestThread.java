@@ -19,7 +19,7 @@ public class TestThread{
 	public static void main(String[] args) {
 		//3.创建子类的对象
 		SubThread su = new SubThread();
-		//4.调用线程的start方法，启动此线程；调用响应的run()方法
+		//4.调用线程的start方法，启动此线程；调用相应的run()方法
 		//一个线程只能够执行一次start方法，不能通过实现类对象的run()方法去启动一个线程
 		su.start();
 		SubThread su2 = new SubThread();

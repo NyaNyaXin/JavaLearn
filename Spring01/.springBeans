@@ -13,6 +13,7 @@
 		<config>src/beans-scope.xml</config>
 		<config>src/beans-properties.xml</config>
 		<config>src/beans-spel.xml</config>
+		<config>src/beans-cycle.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

@@ -12,4 +12,16 @@
 	<bean id="car1" class="com.cx.spring.beans.factory.StaticCarFactory" factory-method="getCar">
 		<constructor-arg value="audi"></constructor-arg>
 	</bean>
+	<!-- 配置工厂的实例 -->
+	<bean id="carFactory" class="com.cx.spring.beans.factory.InstanceCarFactory"></bean>
+	
+	<!-- 通过实例工厂方法来配置bean -->
+	<!-- 
+		factory-bean属性：指向实例工厂方法的bean
+		factory-method属性：指实例工厂方法名
+		constructor-arg子节点：如果工厂方法需要传入参数则使用该子节点来配置参数
+	 -->
+	<bean id="car2" factory-bean="carFactory" factory-method="getCar">
+		<constructor-arg value="ford"></constructor-arg>
+	</bean>
 </beans>

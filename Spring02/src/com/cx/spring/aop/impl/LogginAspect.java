@@ -11,11 +11,16 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 //把这个类声明为一个切面：需要把该类放入到IOC容器中，在声明为一个切面
 @Component
 @Aspect
+@Order(2)
+/**
+ * 可以使用@Order注解指定切面的优先级，值越小优先级越高
+ * **/
 public class LogginAspect {
 	//声明该方法是一个前置通知:在目标方法开始之前执行
 	@Before("execution(public int com.cx.spring.aop.impl.ArithmeticCaculator.*(int, int))")

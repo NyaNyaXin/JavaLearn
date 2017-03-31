@@ -1,8 +1,5 @@
 package com.cx.spring.aop.xml;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class ArithmeticCaculatorImpl implements ArithmeticCaculator {
 
 	@Override

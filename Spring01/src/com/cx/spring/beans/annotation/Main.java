@@ -15,13 +15,14 @@ public class Main {
 //		TestObject to = (TestObject) ctx.getBean("testObject");
 //		System.out.println(to);
 //		
-//		UserContorller uc = (UserContorller) ctx.getBean("userContorller");
-//		System.out.println(uc);
+		UserContorller uc = (UserContorller) ctx.getBean("userContorller");
+		uc.execute();
+		System.out.println(uc);
 //		
 //		UserService us = (UserService) ctx.getBean("userService");
 //		System.out.println(us);
 //		
-		UserRepository ur = (UserRepository) ctx.getBean("userRepository");
-		System.out.println(ur);
+//		UserRepository ur = (UserRepository) ctx.getBean("userRepository");
+//		System.out.println(ur);
 	}
 }

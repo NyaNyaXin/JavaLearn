@@ -12,10 +12,9 @@
 	<!-- context:exclude-filter子节点指定排除哪些指定表达式的组件
 		 context:include-filter子节点指定包含哪些指定表达式的组件，该子节点需要与use-default-filters属性配合使用
 	 -->
-	<context:component-scan base-package="com.cx.spring.beans.annotation" use-default-filters="false">
+	<context:component-scan base-package="com.cx.spring.beans.annotation" >
 		<!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/> -->
 		<!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/> -->
 		<!-- <context:exclude-filter type="assignable" expression="com.cx.spring.beans.annotation.repository.UserRepository"/> -->
-		<context:include-filter type="assignable" expression="com.cx.spring.beans.annotation.repository.UserRepository"/>
 	</context:component-scan>
 </beans>

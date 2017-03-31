@@ -17,6 +17,7 @@
 		<config>src/beans-factory.xml</config>
 		<config>src/beans-beanfactory.xml</config>
 		<config>src/beans-annotation.xml</config>
+		<config>src/beans-generic-di.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

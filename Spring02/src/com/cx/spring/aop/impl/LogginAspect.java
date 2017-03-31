@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -18,5 +19,14 @@ public class LogginAspect {
 		String methodName = joinPoint.getSignature().getName();
 		List<Object> args = Arrays.asList(joinPoint.getArgs());
 		System.out.println("The Method"+methodName+" Begins"+" begin with"+args);
+	}
+	
+	//后置通知：在目标方法执行后（无论是否发生异常），执行的通知
+	//在后置通知中还不能访问目标方法的执行结果
+	@After("execution(public int com.cx.spring.aop.impl.ArithmeticCaculator.*(int, int))")
+	public void afterMethod(JoinPoint joinPoint){
+		String methodName = joinPoint.getSignature().getName();
+		List<Object> args = Arrays.asList(joinPoint.getArgs());
+		System.out.println("The Method"+methodName+" Ends");
 	}
 }

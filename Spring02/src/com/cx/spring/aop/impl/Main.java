@@ -12,7 +12,7 @@ public class Main {
 		// 3. π”√bean
 		int result = arithmeticCaculator.add(1, 1);
 		System.out.println(result);
-		result = arithmeticCaculator.div(1, 1);
+		result = arithmeticCaculator.div(1, 0);
 		System.out.println(result);
 	}
 

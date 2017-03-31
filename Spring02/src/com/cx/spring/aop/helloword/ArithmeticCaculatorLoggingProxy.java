@@ -40,7 +40,18 @@ public class ArithmeticCaculatorLoggingProxy {
 				//日志
 				System.out.println("The Method "+methodName+"begins with"+Arrays.asList(args));
 				//执行方法
-				Object result = method.invoke(target, args);
+				Object result = null;
+				try {
+					//前置通知
+					result = method.invoke(target, args);
+					//返回通知，可以访问到方法的返回值
+				} catch (Exception e) {
+					// TODO: handle exception
+					//异常通知，可以访问到方法出现的异常
+				}
+				
+				//后置通知，因为方法可能会出异常，所以访问不到方法的返回值
+				
 				//日志
 				System.out.println("The method"+methodName+"Ends with"+result);
 				return result;

@@ -1,7 +1,7 @@
 package com.cx.spring.aop.helloword;
 
-import com.cx.spring.aop.impl.ArithmeticCaculator;
-import com.cx.spring.aop.impl.ArithmeticCaculatorImpl;
+import com.cx.spring.aop.ArithmeticCaculator;
+import com.cx.spring.aop.ArithmeticCaculatorImpl;
 
 public class Main {
 	public static void main(String[] args) {

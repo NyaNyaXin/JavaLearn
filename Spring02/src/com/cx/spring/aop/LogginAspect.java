@@ -1,4 +1,4 @@
-package com.cx.spring.aop.impl;
+package com.cx.spring.aop;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +27,7 @@ public class LogginAspect {
 	*使用 @Pointcut 注解来声明切入点表达式
 	*后面的其他通知直接使用方法名来引入当前的切入点表达式
 	*/
-	@Pointcut("execution(public int com.cx.spring.aop.impl.ArithmeticCaculator.*(..))")
+	@Pointcut("execution(public int com.cx.spring.aop.ArithmeticCaculator.*(..))")
 	public void declareJoinPointExpression(){
 		
 	}
@@ -69,7 +69,7 @@ public class LogginAspect {
 	 * 环绕通知类似于动态代理的全过程：ProceedingJoinPoint类型的参数可以决定是否执行目标方法
 	 * 且环绕通知必须有返回值，返回值即为目标方法的返回值
 	 * */
-	@Around("execution(public int com.cx.spring.aop.impl.ArithmeticCaculator.*(..))")
+	@Around("execution(public int com.cx.spring.aop.ArithmeticCaculator.*(..))")
 	public Object aroundMethod(ProceedingJoinPoint pjd){
 		
 		Object result = null;

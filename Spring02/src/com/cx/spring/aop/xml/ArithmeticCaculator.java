@@ -1,4 +1,4 @@
-package com.cx.spring.aop.impl;
+package com.cx.spring.aop.xml;
 
 public interface ArithmeticCaculator {
 	int add(int i,int j);

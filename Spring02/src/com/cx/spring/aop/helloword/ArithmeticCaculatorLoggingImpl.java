@@ -1,6 +1,6 @@
 package com.cx.spring.aop.helloword;
 
-import com.cx.spring.aop.impl.ArithmeticCaculator;
+import com.cx.spring.aop.ArithmeticCaculator;
 
 public class ArithmeticCaculatorLoggingImpl implements ArithmeticCaculator {
 

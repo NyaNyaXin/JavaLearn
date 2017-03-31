@@ -11,7 +11,10 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Order(1)
 public class VlidationAspect {
-	@Before("execution(public int com.cx.spring.aop.impl.ArithmeticCaculator.*(..))")
+	/**
+	 * 注意：这里因为在同一个包下所以仅仅写类名就可以了，要是不再同一个包下，你懂的
+	 * **/
+	@Before("LogginAspect.declareJoinPointExpression()")
 	public void validateArgs(JoinPoint joinpoint){
 		System.out.println("validate:"+Arrays.asList(joinpoint.getArgs()));
 	}

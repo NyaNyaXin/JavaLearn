@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -14,6 +16,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 public class JDBCTest {
 
@@ -21,19 +26,53 @@ public class JDBCTest {
 	private JdbcTemplate jdbcTemplate;
 	private EmployeeDao employeeDao;
 	private DepartmentDao departmentDao;
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
 	{
 		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+		departmentDao = ctx.getBean(DepartmentDao.class);
+		employeeDao = ctx.getBean(EmployeeDao.class);
+		namedParameterJdbcTemplate = ctx.getBean(NamedParameterJdbcTemplate.class);
+	}
+	/*
+	 * 使用具名参数时，可以使用update(String sql, SqlParameterSource paramSource) 方法进行更新操作
+	 * 1.SQL语句中的参数名和类的属性一致！
+	 * 2.使用SqlParameterSource的BeanPropertySqlParameterSource实现类作为参数
+	 * ***/
+	@Test
+	public void testnamedParameterJdbcTemplate2(){
+		String sql="INSERT INTO employees(last_name,email,dept_id)"
+				+ " VALUES(:lastName,:email,:deptid)";
+		Employee employee = new Employee();
+		employee.setLastName("XYZ");
+		employee.setEmail("xyz@163.com");
+		employee.setDeptid(3);
+		SqlParameterSource paramSource = new BeanPropertySqlParameterSource(employee);
+		namedParameterJdbcTemplate.update(sql, paramSource);
+	}
+	/**
+	 * 可以为参数起名字，
+	 * 1.好处：若有多个参数，则不用在去对应参数的位置，而直接对应参数名称即可，更利于维护
+	 * 2.缺点：较麻烦
+	 * **/
+	@Test
+	public void testnamedParameterJdbcTemplate(){
+		String sql="INSERT INTO employees(last_name,email,dept_id) VALUES(:ln,:email,:deptid)";
+		Map<String, Object> map = new HashMap<>();
+		map.put("ln", "FF");
+		map.put("email", "ff@163.com");
+		map.put("deptid", 2);
+		namedParameterJdbcTemplate.update(sql, map);
 	}
 	@Test
 	public void testDepartmentDao(){
-		departmentDao = ctx.getBean(DepartmentDao.class);
+		
 		System.out.println(departmentDao.get(1));
 	}
 	@Test
 	public void testEmployeeDao(){
-		employeeDao = ctx.getBean(EmployeeDao.class);
+		
 		
 		System.out.println(employeeDao.get(5));
 	}

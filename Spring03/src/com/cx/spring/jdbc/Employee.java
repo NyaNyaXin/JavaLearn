@@ -4,7 +4,7 @@ public class Employee {
 	private Integer id;
 	private String lastName;
 	private String email;
-	private Department department;
+	private Integer deptid;
 
 	/**
 	 * @return the id
@@ -52,29 +52,28 @@ public class Employee {
 	}
 
 	/**
-	 * @return the department
+	 * @return the deptid
 	 */
-	public Department getDepartment() {
-		return department;
+	public Integer getDeptid() {
+		return deptid;
 	}
 
 	/**
-	 * @param department
-	 *            the department to set
+	 * @param deptid the deptid to set
 	 */
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setDeptid(Integer deptid) {
+		this.deptid = deptid;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", lastName=" + lastName + ", email=" + email + ", department=" + department
-				+ "]";
+		return "Employee [id=" + id + ", lastName=" + lastName + ", email=" + email + ", deptid=" + deptid + "]";
 	}
+
+	
+	
 
 }

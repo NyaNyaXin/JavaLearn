@@ -5,6 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	
+	<!-- 配置自动扫描的包 -->
+	<context:component-scan base-package="com.cx.spring.jdbc"></context:component-scan>
 	<!-- 导入资源文件 -->
 	<context:property-placeholder location="classpath:db.properties"/>
 	<!-- 配置C3P0数据源 -->

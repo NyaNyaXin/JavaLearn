@@ -19,10 +19,23 @@ public class JDBCTest {
 
 	private ApplicationContext ctx = null;
 	private JdbcTemplate jdbcTemplate;
+	private EmployeeDao employeeDao;
+	private DepartmentDao departmentDao;
 	
 	{
 		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+	}
+	@Test
+	public void testDepartmentDao(){
+		departmentDao = ctx.getBean(DepartmentDao.class);
+		System.out.println(departmentDao.get(1));
+	}
+	@Test
+	public void testEmployeeDao(){
+		employeeDao = ctx.getBean(EmployeeDao.class);
+		
+		System.out.println(employeeDao.get(5));
 	}
 	/**
 	 * 获取单个列的值，或做统计查询

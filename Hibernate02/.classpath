@@ -5,7 +5,7 @@
 	<classpathentry kind="lib" path="lib/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-core-4.2.4.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-core-4.2.4.Final.jar" sourcepath="F:/Framework/J2EEFramework/jeesite-master/doc/maven/repository/org/hibernate/hibernate-core/4.2.4.Final/hibernate-core-4.2.4.Final-sources.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="lib/javassist-3.15.0-GA.jar"/>
 	<classpathentry kind="lib" path="lib/jboss-logging-3.1.0.GA.jar"/>

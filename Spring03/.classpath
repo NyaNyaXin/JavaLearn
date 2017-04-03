@@ -16,7 +16,7 @@
 	<classpathentry kind="lib" path="lib/spring-jdbc-4.0.0.RELEASE.jar" sourcepath="F:/Framework/J2EEFramework/Spring/Spring4.0.0/spring-framework-4.0.0.RELEASE.zip"/>
 	<classpathentry kind="lib" path="lib/spring-orm-4.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-test-4.0.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="lib/spring-tx-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-tx-4.0.0.RELEASE.jar" sourcepath="F:/Framework/J2EEFramework/Spring/Spring4.0.0/spring-framework-4.0.0.RELEASE.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

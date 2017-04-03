@@ -2,6 +2,7 @@ package com.cx.spring.tx;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("bookShopService")
 public class BookShopServiceImpl implements BookShopService {
@@ -9,6 +10,8 @@ public class BookShopServiceImpl implements BookShopService {
 	private BookShopDao bookShopDao;
 
 	@Override
+	//添加事务注解
+	@Transactional
 	public void purchase(String username, String isbn) {
 		//1.获取书的单价
 		int price = bookShopDao.findBookPriceByIsbn(isbn);

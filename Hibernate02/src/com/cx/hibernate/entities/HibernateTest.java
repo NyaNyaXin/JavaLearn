@@ -36,6 +36,27 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	
+	/**
+	 * save()方法：
+	 * 1.是一个临时对象变为持久化对象
+	 * 2.为对象分配id
+	 * 3.在flush缓存时会发送一条insert语句
+	 * 4.在save()方法之前设置的id是无效的
+	 * 5.持久化对象的id是不能被修改的！
+	 * **/
+	@Test
+	public void testSave(){
+		News news = new News();
+		news.setTitle("CC");
+		news.setAuthor("cc");
+		news.setDate(new Date());
+		//news.setId(100);
+		System.out.println(news);
+		session.save(news);
+		System.out.println(news);
+		//news.setId(101);
+	}
 	@Test
 	public void testClear(){
 		News news = (News) session.get(News.class, 1);

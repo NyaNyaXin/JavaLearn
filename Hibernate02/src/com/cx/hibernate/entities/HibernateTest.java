@@ -37,6 +37,17 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	/**
+	 * evict:从session缓存中把指定的持久化对象移除
+	 * **/
+	@Test
+	public void testEvict(){
+		News news1 = (News) session.get(News.class, 1);
+		News news2 = (News) session.get(News.class, 2);
+		news1.setTitle("AA");
+		news2.setTitle("BB");
+		session.evict(news1);
+	}
 	/*
 	 * delete:执行删除操作。只要OID和数据表中的一条记录对应，就会准备执行delete操作
 	 * 若OID在数据表中没有对应的记录则抛出异常

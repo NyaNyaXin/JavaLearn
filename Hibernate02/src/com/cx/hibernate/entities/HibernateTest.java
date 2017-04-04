@@ -36,6 +36,13 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	@Test
+	public void testClear(){
+		News news = (News) session.get(News.class, 1);
+		session.clear();
+		News news2 = (News) session.get(News.class, 1);
+		System.out.println(news);
+	}
 	/**
 	 * refresh()：会强制发送SELECT语句，以使Session缓存中对象的状态和数据表中对应的记录保持一致！
 	 * **/

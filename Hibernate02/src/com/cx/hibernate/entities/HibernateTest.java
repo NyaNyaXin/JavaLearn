@@ -36,6 +36,16 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	/**
+	 * refresh()：会强制发送SELECT语句，以使Session缓存中对象的状态和数据表中对应的记录保持一致！
+	 * **/
+	@Test
+	public void testRefresh(){
+		News news = (News) session.get(News.class,1);
+		System.out.println(news);
+		session.refresh(news);
+		System.out.println(news);
+	}
 	/*
 	 * flush:使数据表中的记录和Session缓存中的对象的状态保持一致，为了保持一致则可能会发送对应的SQL语句
 	 * 1.在Transaction的commit()方法中：先调用Session的flush()方法，再提交事务

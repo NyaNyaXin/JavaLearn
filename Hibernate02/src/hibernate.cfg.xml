@@ -19,6 +19,8 @@
     	<property name="format_sql">true</property>
     	<!-- 生成数据表的策略 -->
     	<property name="hbm2ddl.auto">update</property>
+    	<!-- 设置Hibernate的事务隔离级别 -->
+    	<property name="connection.isolation">2</property>
     	
     	<!-- 需要关联的hibernate映射文件.hbm.xml -->
     	<mapping resource="com/cx/hibernate/entities/News.hbm.xml"/>

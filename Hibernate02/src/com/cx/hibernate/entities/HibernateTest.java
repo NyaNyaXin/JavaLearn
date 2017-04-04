@@ -37,6 +37,18 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	/**
+	 * 注意：
+	 * 1.若OID不为空但数据表中还没有和其对应的记录，会抛出一个异常
+	 * 2.了解：OID值等于id的unsaved-value属性值的对象，也被认为是一个游离对象
+	 * **/
+	@Test
+	public void testSaveOrUpdate(){
+		News news = new News("FF","ff",new Date());
+		news.setId(11);
+		session.saveOrUpdate(news);
+		
+	}
 
 	/**
 	 * update:

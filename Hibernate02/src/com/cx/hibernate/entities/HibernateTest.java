@@ -37,6 +37,22 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	/*
+	 * delete:执行删除操作。只要OID和数据表中的一条记录对应，就会准备执行delete操作
+	 * 若OID在数据表中没有对应的记录则抛出异常
+	 * 
+	 * 可以通过设置hibernate配置文件的hibernate.use_identifier_rollback属性为true
+	 * 是删除对象后把其OID置为null
+	 * ***/
+	@Test
+	public void testDelete(){
+//		News news = new News();
+//		news.setId(11);
+		
+		News news = (News) session.get(News.class, 163840);
+		session.delete(news);
+		System.out.println(news);
+	}
 	/**
 	 * 注意：
 	 * 1.若OID不为空但数据表中还没有和其对应的记录，会抛出一个异常

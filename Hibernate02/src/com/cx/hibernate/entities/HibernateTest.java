@@ -36,6 +36,23 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	/**
+	 * persist()也会执行insert操作
+	 * 
+	 * 和save()方法的区别：
+	 * 在persist()方法之前，若对象已经有id了，则不会执行insert而会抛出异常
+	 * **/
+	@Test
+	public void testPersist(){
+		News news = new News();
+		news.setTitle("EE");
+		news.setAuthor("ee");
+		news.setId(200);
+		news.setDate(new Date());
+		System.out.println(news);
+		session.persist(news);
+		System.out.println(news);
+	}
 	
 	/**
 	 * save()方法：

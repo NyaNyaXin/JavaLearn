@@ -37,6 +37,28 @@ public class HibernateTest {
 		sessionFactory.close();
 	}
 	/**
+	 * get VS load
+	 * 1.执行get方法会立即加载对象。而执行load方法，若不使用该对象，则不会立即执行查询操作，而返回一个代理对象
+	 * 	 get是立即检索，load是延迟检索
+	 * 2.load方法可能会抛出懒加载异常LazyInitializationExecption:在需要初始化代理对像之前已经关闭了Session
+	 * 	 
+	 * 3.若数据表中没有对应的记录，Session也没有被关闭
+	 * 	 get返回null，load若不使用该对象的任何属性，没有问题；若需要初始化则抛异常
+	 * **/
+	@Test
+	public void testLoad(){
+		News news = (News) session.load(News.class, 10);
+		System.out.println(news.getClass().getName());
+		//session.close();
+		//System.out.println(news);
+	}
+	@Test
+	public void testGet(){
+		News news = (News) session.get(News.class, 1);
+		//session.close();
+		System.out.println(news);
+	}
+	/**
 	 * persist()也会执行insert操作
 	 * 
 	 * 和save()方法的区别：

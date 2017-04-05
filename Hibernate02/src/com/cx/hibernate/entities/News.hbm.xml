@@ -19,5 +19,14 @@
 		</property>
 		<!-- 映射派生属性 -->
 		<property name="desc" formula="(SELECT concat(author,':',title) FROM NEWS n where n.id=id)"></property>
+		
+		<!-- 映射大对象 -->
+		<!-- 若希望精确映射sql类型可以使用column子节点的sql-type属性 -->
+		<property name="content">
+			<column name="CONTENT" sql-type="mediumtext"></column>
+		</property>
+		<property name="image" type="blob">
+			<column name="IMAGE" sql-type="mediumblob"></column>
+		</property>
 	</class>
 </hibernate-mapping>

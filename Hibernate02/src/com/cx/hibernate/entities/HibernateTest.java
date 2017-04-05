@@ -2,10 +2,15 @@ package com.cx.hibernate.entities;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -39,6 +44,25 @@ public class HibernateTest {
 		transaction.commit();
 		session.close();
 		sessionFactory.close();
+	}
+	@Test
+	public void testBlob() throws Exception{
+//		News news = new News();
+//		news.setAuthor("cc");
+//		news.setContent("CONTENT");
+//		news.setDate(new Date());
+//		news.setDesc("DESC");
+//		news.setTitle("CC");
+//		InputStream stream = new FileInputStream("img0_3840x2160.jpg");
+//		Blob image= Hibernate.getLobCreator(session).createBlob(stream, stream.available());
+//		
+//		news.setImage(image);
+//		session.save(news);
+		
+		News news = (News) session.get(News.class, 1);
+		Blob image = news.getImage();
+		InputStream in = image.getBinaryStream();
+		System.out.println(in.available());
 	}
 	@Test
 	public void testPropertyUpdate(){

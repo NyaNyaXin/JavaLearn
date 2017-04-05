@@ -1,5 +1,6 @@
 package com.cx.hibernate.entities;
 
+import java.sql.Blob;
 import java.util.Date;
 
 public class News {
@@ -10,6 +11,11 @@ public class News {
 	
 	//该属性值为title：author
 	private String desc;
+	
+	//大文本
+	private String content;
+	//二进制数据
+	private Blob image;
 	
 
 	/**
@@ -108,5 +114,35 @@ public class News {
 	public String toString() {
 		return "News [id=" + id + ", title=" + title + ", author=" + author + ", date=" + date + "]";
 	}
+
+	/**
+	 * @return the content
+	 */
+	public String getContent() {
+		return content;
+	}
+
+	/**
+	 * @param content the content to set
+	 */
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	/**
+	 * @return the image
+	 */
+	public Blob getImage() {
+		return image;
+	}
+
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(Blob image) {
+		this.image = image;
+	}
+	
+	
 
 }

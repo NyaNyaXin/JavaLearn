@@ -45,6 +45,18 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	
+	@Test
+	public void testComponent(){
+		Worker worker = new Worker();
+		Pay pay = new Pay();
+		pay.setMonthlyPay(1000);
+		pay.setYearPay(80000);
+		pay.setVocationWithPay(5);
+		worker.setName("ABCD");
+		worker.setPay(pay);
+		session.save(worker);
+	}
 	@Test
 	public void testBlob() throws Exception{
 //		News news = new News();

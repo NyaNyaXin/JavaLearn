@@ -41,6 +41,25 @@ public class HibernateTest {
 		sessionFactory.close();
 	}
 	@Test
+	public void testPropertyUpdate(){
+		News news = (News) session.get(News.class, 1);
+		news.setTitle("AAA");
+		System.out.println(news.getDesc());
+	}
+	@Test
+	public void testIdGenerator() throws InterruptedException{
+		News news = new News("AA","aa",new Date());
+		session.save(news);
+		
+		//Thread.sleep(5000);
+	}
+	
+	@Test
+	public void testDynamicUpdate(){
+		News news = (News) session.get(News.class, 1);
+		news.setAuthor("ABCD");
+	}
+	@Test
 	public void testDoWork(){
 		session.doWork(new Work() {
 			

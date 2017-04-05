@@ -7,6 +7,10 @@ public class News {
 	private String title;
 	private String author;
 	private Date date;
+	
+	//该属性值为title：author
+	private String desc;
+	
 
 	/**
 	 * @return the id
@@ -66,6 +70,22 @@ public class News {
 	 */
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	
+
+	/**
+	 * @return the desc
+	 */
+	public String getDesc() {
+		return desc;
+	}
+
+	/**
+	 * @param desc the desc to set
+	 */
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	public News(String title, String author, Date date) {

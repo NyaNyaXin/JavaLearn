@@ -14,7 +14,7 @@
 		<property name="author" type="java.lang.String" index="news_index" length="20">
 			<column name="AUTHOR" />
 		</property>
-		<property name="date" type="java.util.Date">
+		<property name="date" type="time">
 			<column name="DATE" />
 		</property>
 		<!-- 映射派生属性 -->

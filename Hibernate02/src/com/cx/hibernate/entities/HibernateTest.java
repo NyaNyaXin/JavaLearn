@@ -45,6 +45,7 @@ public class HibernateTest {
 		News news = (News) session.get(News.class, 1);
 		news.setTitle("AAA");
 		System.out.println(news.getDesc());
+		System.out.println(news.getDate().getClass());
 	}
 	@Test
 	public void testIdGenerator() throws InterruptedException{

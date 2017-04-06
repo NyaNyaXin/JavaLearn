@@ -4,7 +4,7 @@
 <!-- Generated 2017-4-5 20:22:35 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping package="com.cx.hibernate.entities.n21.both">
     <class name="Customer" table="CUSTOMERS">
-        <id name="customerId" type="java.lang.Integer">
+        <id name="customerId" type="java.lang.Integer"> 
             <column name="CUSTOMER_ID" />
             <generator class="native" />
         </id>
@@ -17,7 +17,10 @@
         	set:映射set类型的属性
         	table：set中元素对应的记录放在哪一个数据表中。该值需要和多对一的多的那个表的名字一致
          -->
-        <set name="orders" table="ORDERS" inverse="true">
+        <!-- inverse:指定有哪一方来维护关联关系，通常设置为true以指定由多的一端来维护关联关系 -->
+        <!-- cascade:设定级联操作 ，开发时不建议设定该属性，建议使用手工的方式来处理-->
+        <!-- order-by:在查询时对集合中的元素进行排序 ，order-by中使用的是表的字段名而不是持久化类的属性名-->
+        <set name="orders" table="ORDERS" inverse="true" order-by="ORDER_NAME DESC">
         	<!-- 指定多的表中的外键列的名字 -->
         	<key column="CUSTOMER_ID"></key>
         	<!-- 指定映射类型 -->

@@ -47,6 +47,11 @@ public class HibernateTest {
 		sessionFactory.close();
 	}
 	@Test
+	public void testCascade(){
+		Customer customer = (Customer) session.get(Customer.class, 4);
+		customer.getOrders().clear();
+	}
+	@Test
 	public void testDelete(){
 		//在不设定级联关系的情况下，且1这一端的对象有n的对象在引用，不能直接删除1这一端的对象
 		Customer customer = (Customer) session.get(Customer.class, 1);
@@ -66,7 +71,7 @@ public class HibernateTest {
 	@Test
 	public void testOne2Many(){
 		//1.对n的一端的集合使用延迟加载
-		Customer customer = (Customer) session.get(Customer.class, 1);
+		Customer customer = (Customer) session.get(Customer.class, 2);
 		System.out.println(customer.getCustomerName());
 		//2.返回的多的一端的集合是hibernate内置的集合类型
 		//该类型具有延迟加载和存放代理对象的功能
@@ -74,7 +79,7 @@ public class HibernateTest {
 		
 		//3.可能会抛出懒加载异常
 //		session.close();
-//		System.out.println(customer.getOrders().size());
+		System.out.println(customer.getOrders().size());
 		
 		//4.在需要使用集合中元素的时候进行初始化
 	}
@@ -87,7 +92,7 @@ public class HibernateTest {
 		
 		System.out.println(order.getCustomer().getClass().getName());
 		
-		session.close();
+		//session.close();
 		//2.再需要使用到关联的对象时才发送对应的sql语句
 		Customer customer = order.getCustomer();
 		System.out.println(customer.getCustomerName());
@@ -101,11 +106,11 @@ public class HibernateTest {
 	@Test
 	public void testManyToOneSave() {
 		Customer customer = new Customer();
-		customer.setCustomerName("CC");
+		customer.setCustomerName("AA");
 		Order order1 = new Order();
-		order1.setOrderName("ORDER-5");
+		order1.setOrderName("ORDER-1");
 		Order order2 = new Order();
-		order2.setOrderName("ORDER-6");
+		order2.setOrderName("ORDER-2");
 
 		// 设定关联关系
 		order1.setCustomer(customer);
@@ -121,8 +126,8 @@ public class HibernateTest {
 		//建议设定set的inverse=true，建议先插入1的一端，后插入多的一端
 		//好处是不会多出update语句
 		 session.save(customer);
-		 session.save(order1);
-		 session.save(order2);
+//		 session.save(order1);
+//		 session.save(order2);
 		//先插入order再插入customer，3条insert，4条update
 //		session.save(order1);
 //		session.save(order2);

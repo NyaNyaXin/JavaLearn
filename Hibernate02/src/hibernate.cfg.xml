@@ -43,8 +43,11 @@
     	<!-- 需要关联的hibernate映射文件.hbm.xml -->
     	<mapping resource="com/cx/hibernate/entities/News.hbm.xml"/>
     	<mapping resource="com/cx/hibernate/entities/Worker.hbm.xml"/>
-    	
+    	<!-- 
     	<mapping resource="com/cx/hibernate/entities/n21/Customer.hbm.xml"/>
     	<mapping resource="com/cx/hibernate/entities/n21/Order.hbm.xml"/>
+    	 -->
+    	<mapping resource="com/cx/hibernate/entities/n21/both/Customer.hbm.xml"/>
+    	<mapping resource="com/cx/hibernate/entities/n21/both/Order.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

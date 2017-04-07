@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	<!-- hibernate连接数据库的基本信息 -->
+    	<property name="connection.username">root</property>
+    	<property name="connection.password">123456</property>
+    	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    	<property name="connection.url">jdbc:mysql://192.168.199.3:3306/hibernate</property>
+    	
+    	
+    	<!-- 配置hibernate的基本配置 -->
+    	<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+    	<!-- 运行时是否打印sql -->
+    	<property name="show_sql">true</property>
+    	<!-- 运行时是否格式化sql -->
+    	<property name="format_sql">true</property>
+    	<!-- 生成数据表的策略 -->
+    	<property name="hbm2ddl.auto">update</property>
+    	<!-- 设置Hibernate的事务隔离级别 -->
+    	<property name="connection.isolation">2</property>
+    	<!-- 删除对象后使其OID置为null -->
+    	<property name="use_identifier_rollback">true</property>
+    	
+    	<!-- 配置C3P0数据源 -->
+    	<!-- 
+    	<property name="hibernate.c3p0.max_size">10</property>
+    	<property name="hibernate.c3p0.min_size">5</property>
+    	<property name="c3p0.acquire_increment">2</property>
+    	
+    	<property name="c3p0.idle_test_period">2</property>
+    	<property name="c3p0.timeout">2000</property>
+    	
+    	<property name="c3p0.max_statements">10</property>
+    	 -->
+    	 
+    	<!-- 以下两个配置 -->
+    	<!-- 设定 JDBC 的 Statement 读取数据的时候每次从数据库中取出的记录条数 -->
+    	<property name="hibernate.jdbc.fetch_size">100</property>
+    	<!-- 设定对数据库进行批量删除，批量更新和批量插入的时候的批次大小 -->
+    	<property name="hibernate.jdbc.batch_size">30</property>
+    	
+    	<!-- 需要关联的hibernate映射文件.hbm.xml -->
+    	<mapping resource="com/cx/hibernate/entities/Department.hbm.xml"/>
+    	<mapping resource="com/cx/hibernate/entities/Employee.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

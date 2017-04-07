@@ -39,74 +39,86 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
-	
-	
+
 	@Test
-	public void testFieldQuery2(){
-		String hql= "SELECT new Employee(e.salary,e.email,e.dept) FROM Employee e WHERE e.dept = :dept";
+	public void testGroupBy() {
+		String hql = "SELECT min(e.salary),max(e.salary) FROM Employee e GROUP BY e.dept HAVING min(e.salary) >:minSal";
+		Query query = session.createQuery(hql).setFloat("minSal", 100);
+		List<Object[]> result = query.list();
+		for(Object[] objects:result ){
+			System.out.println(Arrays.asList(objects));
+		}
+	}
+
+	@Test
+	public void testFieldQuery2() {
+		String hql = "SELECT new Employee(e.salary,e.email,e.dept) FROM Employee e WHERE e.dept = :dept";
 		Query query = session.createQuery(hql);
 		Department department = new Department();
 		department.setId(1);
 		List<Employee> result = query.setEntity("dept", department).list();
-		for(Employee employee:result){
-			System.out.println(employee.getId()+employee.getEmail()+employee.getSalary()+employee.getDept());
+		for (Employee employee : result) {
+			System.out.println(employee.getId() + employee.getEmail() + employee.getSalary() + employee.getDept());
 		}
 	}
+
 	@Test
-	public void testFieldQuery(){
-		String hql= "SELECT e.email,e.salary,e.dept FROM Employee e WHERE e.dept = :dept";
+	public void testFieldQuery() {
+		String hql = "SELECT e.email,e.salary,e.dept FROM Employee e WHERE e.dept = :dept";
 		Query query = session.createQuery(hql);
 		Department department = new Department();
 		department.setId(1);
 		List<Object[]> result = query.setEntity("dept", department).list();
-		for(Object[] objects : result){
+		for (Object[] objects : result) {
 			System.out.println(Arrays.asList(objects));
 		}
 	}
+
 	@Test
-	public void testNamedQuery(){
-		Query query =session.getNamedQuery("salaryEmps");
-		List<Employee> employees = query.setFloat("minSal",0).setFloat("maxSal", 1000).list();
+	public void testNamedQuery() {
+		Query query = session.getNamedQuery("salaryEmps");
+		List<Employee> employees = query.setFloat("minSal", 0).setFloat("maxSal", 1000).list();
 		System.out.println(employees.size());
 	}
-	
+
 	@Test
-	public void testPageQuery(){
+	public void testPageQuery() {
 		String hql = "FROM Employee";
 		Query query = session.createQuery(hql);
 		int pageNum = 4;
 		int pageSize = 2;
-		List<Employee> emps = query.setFirstResult((pageNum-1)*pageSize).setMaxResults(pageSize).list();
-		
+		List<Employee> emps = query.setFirstResult((pageNum - 1) * pageSize).setMaxResults(pageSize).list();
+
 		System.out.println(emps);
 	}
+
 	@Test
-	public void testHQLNamesParameter(){
-		//1.创建Query对象
-		//基于命名参数
+	public void testHQLNamesParameter() {
+		// 1.创建Query对象
+		// 基于命名参数
 		String hql = "FROM Employee e WHERE e.salary>:sql and e.email LIKE :email ORDER BY e.salary";
 		Query query = session.createQuery(hql);
-		//2.绑定参数
+		// 2.绑定参数
 		query.setFloat("sql", 200).setString("email", "%c%");
-		//3.执行查询
+		// 3.执行查询
 		List<Employee> employees = query.list();
 		System.out.println(employees.size());
 	}
-	
+
 	@Test
-	public void testHQL(){
-		//1.创建Query对象
-		//基于位置的参数
+	public void testHQL() {
+		// 1.创建Query对象
+		// 基于位置的参数
 		String hql = "FROM Employee e WHERE e.salary>? and e.email LIKE ? and e.dept=?";
 		Query query = session.createQuery(hql);
-		//2.绑定参数
-		//Query对象调用setXxx方法，支持方法链的编程风格
+		// 2.绑定参数
+		// Query对象调用setXxx方法，支持方法链的编程风格
 		Department dept = new Department();
 		dept.setId(1);
 		query.setFloat(0, 200).setString(1, "%c%").setEntity(2, dept);
-		//3.执行查询
+		// 3.执行查询
 		List<Employee> employees = query.list();
 		System.out.println(employees.size());
 	}
-	
+
 }

@@ -44,7 +44,7 @@ public class HibernateTest {
 		Set<Item> items = category.getItems();
 		System.out.println(items.size());
 	}
-	
+	 
 	@Test
 	public void testSave(){
 		Category category1 = new Category();

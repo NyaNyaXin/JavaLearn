@@ -1,6 +1,8 @@
 package com.cx.hibernate.test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -41,11 +43,25 @@ public class HibernateTest {
 	}
 
 	@Test
+	public void testLeftJoinFetch() {
+		// String hql="SELECT DISTINCT d FROM Department d LEFT JOIN FETCH
+		// d.emps";
+		String hql = "FROM  Department d LEFT JOIN FETCH d.emps";
+		Query query = session.createQuery(hql);
+		List<Department> departments = query.list();
+		departments = new ArrayList<>(new LinkedHashSet(departments));
+		System.out.println(departments.size());
+		for(Department department:departments){
+			System.out.println(department.getName()+department.getEmps().size());
+		}
+	}
+
+	@Test
 	public void testGroupBy() {
 		String hql = "SELECT min(e.salary),max(e.salary) FROM Employee e GROUP BY e.dept HAVING min(e.salary) >:minSal";
 		Query query = session.createQuery(hql).setFloat("minSal", 100);
 		List<Object[]> result = query.list();
-		for(Object[] objects:result ){
+		for (Object[] objects : result) {
 			System.out.println(Arrays.asList(objects));
 		}
 	}

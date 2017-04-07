@@ -40,6 +40,16 @@ public class HibernateTest {
 	}
 	
 	@Test
+	public void testPageQuery(){
+		String hql = "FROM Employee";
+		Query query = session.createQuery(hql);
+		int pageNum = 4;
+		int pageSize = 2;
+		List<Employee> emps = query.setFirstResult((pageNum-1)*pageSize).setMaxResults(pageSize).list();
+		
+		System.out.println(emps);
+	}
+	@Test
 	public void testHQLNamesParameter(){
 		//1.创建Query对象
 		//基于命名参数

@@ -3,20 +3,21 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-4-5 20:22:35 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping package="com.cx.hibernate.strategy">
-    <class name="Customer" table="CUSTOMERS" lazy="true">
-        <id name="customerId" type="java.lang.Integer"> 
-            <column name="CUSTOMER_ID" />
-            <generator class="native" />
-        </id>
-        <property name="customerName" type="java.lang.String">
-            <column name="CUSTOMER_NAME" />
-        </property>
-        
-        <set name="orders" table="ORDERS" inverse="true" order-by="ORDER_NAME DESC">
-        	<!-- 指定多的表中的外键列的名字 -->
-        	<key column="CUSTOMER_ID"></key>
-        	<!-- 指定映射类型 -->
-        	<one-to-many class="Order"/>
-        </set>
-    </class>
+	<class name="Customer" table="CUSTOMERS" lazy="true">
+		<id name="customerId" type="java.lang.Integer">
+			<column name="CUSTOMER_ID" />
+			<generator class="native" />
+		</id>
+		<property name="customerName" type="java.lang.String">
+			<column name="CUSTOMER_NAME" />
+		</property>
+
+		<set name="orders" table="ORDERS" inverse="true" order-by="ORDER_NAME DESC"
+			lazy="true" batch-size="2" fetch="join">
+			<!-- 指定多的表中的外键列的名字 -->
+			<key column="CUSTOMER_ID"></key>
+			<!-- 指定映射类型 -->
+			<one-to-many class="Order" />
+		</set>
+	</class>
 </hibernate-mapping>

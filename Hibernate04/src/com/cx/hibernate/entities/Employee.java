@@ -58,4 +58,16 @@ public class Employee {
 				+ "]";
 	}
 
+	public Employee(float salary, String email, Department dept) {
+		super();
+		this.salary = salary;
+		this.email = email;
+		this.dept = dept;
+	}
+
+	public Employee() {
+		super();
+	}
+
+	
 }

@@ -1,5 +1,6 @@
 package com.cx.hibernate.test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -37,6 +38,30 @@ public class HibernateTest {
 		transaction.commit();
 		session.close();
 		sessionFactory.close();
+	}
+	
+	
+	@Test
+	public void testFieldQuery2(){
+		String hql= "SELECT new Employee(e.salary,e.email,e.dept) FROM Employee e WHERE e.dept = :dept";
+		Query query = session.createQuery(hql);
+		Department department = new Department();
+		department.setId(1);
+		List<Employee> result = query.setEntity("dept", department).list();
+		for(Employee employee:result){
+			System.out.println(employee.getId()+employee.getEmail()+employee.getSalary()+employee.getDept());
+		}
+	}
+	@Test
+	public void testFieldQuery(){
+		String hql= "SELECT e.email,e.salary,e.dept FROM Employee e WHERE e.dept = :dept";
+		Query query = session.createQuery(hql);
+		Department department = new Department();
+		department.setId(1);
+		List<Object[]> result = query.setEntity("dept", department).list();
+		for(Object[] objects : result){
+			System.out.println(Arrays.asList(objects));
+		}
 	}
 	@Test
 	public void testNamedQuery(){

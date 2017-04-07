@@ -18,7 +18,7 @@
     	<!-- 运行时是否格式化sql -->
     	<property name="format_sql">true</property>
     	<!-- 生成数据表的策略 -->
-    	<property name="hbm2ddl.auto">update</property>
+    	<property name="hbm2ddl.auto">create</property>
     	<!-- 设置Hibernate的事务隔离级别 -->
     	<property name="connection.isolation">2</property>
     	<!-- 删除对象后使其OID置为null -->

@@ -63,6 +63,12 @@ public class HibernateTest {
 		
 		category2.getItems().add(item1);
 		category2.getItems().add(item2);
+		
+		item1.getCategories().add(category1);
+		item1.getCategories().add(category2);
+		
+		item2.getCategories().add(category1);
+		item2.getCategories().add(category2);
 		//Ö´ÐÐ±£´æ²Ù×÷
 		session.save(category1);
 		session.save(category2);

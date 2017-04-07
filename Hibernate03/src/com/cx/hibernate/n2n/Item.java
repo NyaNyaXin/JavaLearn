@@ -1,8 +1,26 @@
 package com.cx.hibernate.n2n;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Item {
 	private Integer id;
 	private String name;
+	private Set<Category> categories = new HashSet<>();
+	
+	
+	/**
+	 * @return the categories
+	 */
+	public Set<Category> getCategories() {
+		return categories;
+	}
+	/**
+	 * @param categories the categories to set
+	 */
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
 	/**
 	 * @return the id
 	 */

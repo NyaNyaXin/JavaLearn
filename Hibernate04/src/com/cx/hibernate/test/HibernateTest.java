@@ -63,7 +63,7 @@ public class HibernateTest {
 	public void testLeftJoinFetch() {
 		// String hql="SELECT DISTINCT d FROM Department d LEFT JOIN FETCH
 		// d.emps";
-		String hql = "FROM  Department d LEFT JOIN FETCH d.emps";
+		String hql = "FROM  Department d INNER JOIN FETCH d.emps";
 		Query query = session.createQuery(hql);
 		List<Department> departments = query.list();
 		departments = new ArrayList<>(new LinkedHashSet(departments));

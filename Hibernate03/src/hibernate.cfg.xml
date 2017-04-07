@@ -41,6 +41,6 @@
     	<property name="hibernate.jdbc.batch_size">30</property>
     	
     	<!-- 需要关联的hibernate映射文件.hbm.xml -->
-    	<mapping resource="com/cx/hibernate/subclass/Person.hbm.xml"/>
+    	<mapping resource="com/cx/hibernate/joined/subclass/Person.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

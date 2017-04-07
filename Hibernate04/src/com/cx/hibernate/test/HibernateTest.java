@@ -38,6 +38,12 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	@Test
+	public void testNamedQuery(){
+		Query query =session.getNamedQuery("salaryEmps");
+		List<Employee> employees = query.setFloat("minSal",0).setFloat("maxSal", 1000).list();
+		System.out.println(employees.size());
+	}
 	
 	@Test
 	public void testPageQuery(){

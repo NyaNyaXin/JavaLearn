@@ -1,14 +1,5 @@
 package com.cx.hibernate.strategy;
 
-import static org.junit.Assert.*;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -16,14 +7,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.jdbc.Work;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 public class HibernateTest {
 
@@ -48,11 +36,29 @@ public class HibernateTest {
 		sessionFactory.close();
 	}
 	@Test
+	public void testMany2OneStrategy(){
+//		Order order = (Order) session.get(Order.class, 1);
+//		System.out.println(order.getCustomer().getCustomerName());
+		
+		List<Order> orders = session.createQuery("FROM Order o").list();
+		for(Order order :orders){
+			if(order.getCustomer()!=null){
+				System.out.println(order.getCustomer().getCustomerName());
+			}
+		}
+		//1.lazy取值为proxy和false分别代表对对应的属性采用延迟检索和立即检索
+		//2.fetch取值为join表示使用迫切左外连接的方式初始化n关联的1的一端的属性
+		//忽略lazy属性
+		//3.该属性需要设置在1那一端的class元素中：
+		//<class name="Customer" table="CUSTOMERS" lazy="true" batch-size="5">
+		//作用：一次初始化1的这一端代理对象的个数
+	}
+	@Test
 	public void testSetFetch2(){
 		Customer customer = (Customer) session.get(Customer.class, 1);
 		System.out.println(customer.getOrders().size());
-	
 	}
+	
 	@Test
 	public void testSetFetch(){
 		List<Customer> customers = session.createQuery("FROM Customer").list();

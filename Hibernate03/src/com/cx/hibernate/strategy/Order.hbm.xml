@@ -12,6 +12,6 @@
 			<column name="ORDER_NAME" />
 		</property>
 
-		<many-to-one name="customer" class="Customer" column="CUSTOMER_ID"></many-to-one>
+		<many-to-one name="customer" class="Customer" column="CUSTOMER_ID" lazy="false" fetch="join"></many-to-one>
 	</class>
 </hibernate-mapping>

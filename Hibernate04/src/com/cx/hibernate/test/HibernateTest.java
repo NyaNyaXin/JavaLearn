@@ -41,6 +41,23 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	@Test
+	public void testLeftJoin(){
+		String hql = "SELECT DISTINCT d FROM Department d LEFT JOIN d.emps";
+	
+		Query query =session.createQuery(hql);
+		List<Department> departments =query.list();
+		for(Department department :departments){
+			System.out.println(department.getName());
+		}
+		
+//		List<Object[]> result =query.list();
+//		//result = new ArrayList<>(new LinkedHashSet<>(result));
+//		System.out.println(result);
+//		for(Object[] objects : result){
+//			System.out.println(Arrays.asList(objects));
+//		}
+	}
 
 	@Test
 	public void testLeftJoinFetch() {

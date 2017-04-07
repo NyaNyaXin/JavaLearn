@@ -18,7 +18,7 @@
     	<!-- 运行时是否格式化sql -->
     	<property name="format_sql">true</property>
     	<!-- 生成数据表的策略 -->
-    	<property name="hbm2ddl.auto">create</property>
+    	<property name="hbm2ddl.auto">update</property>
     	<!-- 设置Hibernate的事务隔离级别 -->
     	<property name="connection.isolation">2</property>
     	<!-- 删除对象后使其OID置为null -->
@@ -41,7 +41,6 @@
     	<property name="hibernate.jdbc.batch_size">30</property>
     	
     	<!-- 需要关联的hibernate映射文件.hbm.xml -->
-    	<mapping resource="com/cx/hibernate/n2n/Category.hbm.xml"/>
-    	<mapping resource="com/cx/hibernate/n2n/Item.hbm.xml"/>
+    	<mapping resource="com/cx/hibernate/subclass/Person.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

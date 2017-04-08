@@ -15,7 +15,6 @@ import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
@@ -49,7 +48,18 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
-
+	@Test
+	public void testQueryCache(){
+		Query query = session.createQuery("FROM Employee");
+		query.setCacheable(true);
+		List<Employee> employees = query.list();
+		System.out.println(employees.size());
+		employees = query.list();
+		System.out.println(employees);
+		
+		Criteria criteria  = session.createCriteria(Employee.class);
+		criteria.setCacheable(true);
+	}
 	@Test
 	public void testCollectionSecondLevelCache() {
 		Department department = (Department) session.get(Department.class, 1);

@@ -39,6 +39,9 @@
 		<property name="cache.use_second_level_cache">true</property>
 		<!-- 配置使用的二级缓存的产品 -->
 		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		
+		<!-- 配置启用查询缓存 -->
+	    <property name="cache.use_query_cache">true</property>
 
 		<!-- 需要关联的hibernate映射文件.hbm.xml -->
 		<mapping resource="com/cx/hibernate/entities/Department.hbm.xml" />
@@ -46,5 +49,7 @@
 	    <class-cache usage="read-write" class="com.cx.hibernate.entities.Department"/>
 	    <!-- <collection-cache usage="read-write" collection="com.cx.hibernate.entities.Department.emps"/> -->
 	    <class-cache usage="read-write" class="com.cx.hibernate.entities.Employee"/>
+	    
+	    
 	</session-factory>
 </hibernate-configuration>

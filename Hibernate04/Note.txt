@@ -26,3 +26,12 @@ I.配置对集合使用二级缓存
             <one-to-many class="com.cx.hibernate.entities.Employee" />
  </set>
 II.注意：还需要配置集合中的元素对应的持久化类也使用二级缓存！否则将会多出n条sql语句
+
+4)ehcache配置文件：详见ehcache.xml
+
+5)查询缓存：默认情况下，设置的缓存对HQL及QBC查询是无效的，但可以通过以下方式，使其是有晓得
+
+I.在hibernate配置文件中声明开启查询缓存
+ <property name="cache.use_query_cache">true</property>
+II.调用Query或Criteria的setCacheable(true)
+III.查询缓存依赖于二级缓存

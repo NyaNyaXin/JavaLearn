@@ -1,5 +1,7 @@
 package com.cx.hibernate.test;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -18,14 +20,17 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.jdbc.Work;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.cx.hibernate.dao.DepartmentDao;
 import com.cx.hibernate.entities.Department;
 import com.cx.hibernate.entities.Employee;
+import com.cx.hibernate.hibernate.HibernateUtils;
 
 public class HibernateTest {
 
@@ -48,6 +53,35 @@ public class HibernateTest {
 		transaction.commit();
 		session.close();
 		sessionFactory.close();
+	}
+	@Test
+	public void testBatch(){
+		session.doWork(new Work() {
+			
+			@Override
+			public void execute(Connection connection) throws SQLException {
+				// 通过JDBC原生的API进行操作，效率最高，速度最快
+			}
+		});
+	}
+	@Test
+	public void testManageSession(){
+		//获取Session
+		//开启事务
+		Session session = HibernateUtils.getInstance().getSession();
+		System.out.println("-->"+session.hashCode());
+		Transaction transaction = session.beginTransaction();
+		
+		DepartmentDao departmentDao = new DepartmentDao();
+		
+		Department department = new Department();
+		department.setName("AAAA");
+		departmentDao.save(department);
+		departmentDao.save(department);
+		departmentDao.save(department);
+		//若Session是由thread管理的，则在提交或回滚事务时，已经关闭Session了
+		transaction.commit();
+		System.out.println(session.isOpen());
 	}
 	@Test
 	public void testQueryIterate(){

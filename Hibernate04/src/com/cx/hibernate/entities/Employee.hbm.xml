@@ -4,6 +4,8 @@
 <!-- Generated 2017-4-7 15:56:58 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
 	<class name="com.cx.hibernate.entities.Employee" table="GG_EMPLOYEE">
+	
+		<cache usage="read-write"/>
 		<id name="id" type="java.lang.Integer">
 			<column name="ID" />
 			<generator class="assigned" />

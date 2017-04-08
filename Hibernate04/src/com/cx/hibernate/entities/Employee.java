@@ -47,15 +47,9 @@ public class Employee {
 		this.dept = dept;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", email=" + email + ", dept=" + dept
-				+ "]";
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", email=" + email + "]";
 	}
 
 	public Employee(float salary, String email, Department dept) {

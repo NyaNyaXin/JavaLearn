@@ -49,6 +49,21 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	
+	@Test
+	public void testHibernateSecondLevelCache(){
+		Employee employee = (Employee) session.get(Employee.class, 1);
+		System.out.println(employee);
+		
+		transaction.commit();
+		session.close();
+		
+		session = sessionFactory.openSession();
+		transaction = session.beginTransaction();
+		
+		Employee employee2 = (Employee) session.get(Employee.class, 1);
+		System.out.println(employee2);
+	}
 	@Test
 	public void testHQLUpdate(){
 		String hql = "DELETE FROM Department d where d.id = :id";

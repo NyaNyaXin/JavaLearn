@@ -5,11 +5,19 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Conjunction;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.After;
@@ -41,22 +49,80 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+
 	@Test
-	public void testLeftJoin(){
+	public void testQBC4(){
+		Criteria criteria = session.createCriteria(Employee.class);
+		//1.添加排序
+		criteria.addOrder(Order.asc("salary"));
+		criteria.addOrder(Order.desc("email"));
+		//2.添加翻页方法
+		int pageSize = 2;
+		int pageNum =1 ;
+		criteria.setFirstResult((pageNum-1)*pageSize).setMaxResults(pageSize).list();
+		
+	}
+
+	@Test
+	public void testQBC3() {
+		Criteria criteria = session.createCriteria(Employee.class);
+		// 统计查询：使用Projection:可以由Projections的静态方法得到
+		criteria.setProjection(Projections.max("salary"));
+		System.out.println(criteria.uniqueResult());
+	}
+
+	@Test
+	public void testQBC2() {
+		Criteria criteria = session.createCriteria(Employee.class);
+		// 1.AND:使用 Conjunction表示
+		// Conjunction本身就是一个Criteria对象
+		// 且其中可以添加Criteria对象
+		Conjunction conjunction = Restrictions.conjunction();
+		conjunction.add(Restrictions.like("name", "a", MatchMode.ANYWHERE));
+		Department department = new Department();
+		department.setId(1);
+		conjunction.add(Restrictions.eq("dept", department));
+		System.out.println(conjunction);
+		// 2.OR
+		Disjunction disjunction = Restrictions.disjunction();
+		disjunction.add(Restrictions.ge("salary", 0F));
+		disjunction.add(Restrictions.isNull("email"));
+		criteria.add(conjunction);
+		criteria.add(disjunction);
+		System.out.println(criteria);
+		criteria.list();
+	}
+
+	@Test
+	public void testQBC() {
+		// 1.创建一个Criteria对象
+		Criteria criteria = session.createCriteria(Employee.class);
+		// 2.添加查询条件:在QBC中查询条件使用Criterion来表示
+		// Criterion可以通过Restrictions对象的静态方法得到
+		criteria.add(Restrictions.eq("email", "chen@163.com"));
+		criteria.add(Restrictions.gt("salary", 0F));
+
+		// 3.执行查询
+		Employee employee = (Employee) criteria.uniqueResult();
+		System.out.println(employee);
+	}
+
+	@Test
+	public void testLeftJoin() {
 		String hql = "SELECT DISTINCT d FROM Department d LEFT JOIN d.emps";
-	
-		Query query =session.createQuery(hql);
-		List<Department> departments =query.list();
-		for(Department department :departments){
+
+		Query query = session.createQuery(hql);
+		List<Department> departments = query.list();
+		for (Department department : departments) {
 			System.out.println(department.getName());
 		}
-		
-//		List<Object[]> result =query.list();
-//		//result = new ArrayList<>(new LinkedHashSet<>(result));
-//		System.out.println(result);
-//		for(Object[] objects : result){
-//			System.out.println(Arrays.asList(objects));
-//		}
+
+		// List<Object[]> result =query.list();
+		// //result = new ArrayList<>(new LinkedHashSet<>(result));
+		// System.out.println(result);
+		// for(Object[] objects : result){
+		// System.out.println(Arrays.asList(objects));
+		// }
 	}
 
 	@Test
@@ -68,8 +134,8 @@ public class HibernateTest {
 		List<Department> departments = query.list();
 		departments = new ArrayList<>(new LinkedHashSet(departments));
 		System.out.println(departments.size());
-		for(Department department:departments){
-			System.out.println(department.getName()+department.getEmps().size());
+		for (Department department : departments) {
+			System.out.println(department.getName() + department.getEmps().size());
 		}
 	}
 

@@ -43,6 +43,8 @@
 		<!-- 需要关联的hibernate映射文件.hbm.xml -->
 		<mapping resource="com/cx/hibernate/entities/Department.hbm.xml" />
 		<mapping resource="com/cx/hibernate/entities/Employee.hbm.xml" />
-		<!-- <class-cache usage="read-write" class="com.cx.hibernate.entities.Employee"/> -->
+	    <class-cache usage="read-write" class="com.cx.hibernate.entities.Department"/>
+	    <!-- <collection-cache usage="read-write" collection="com.cx.hibernate.entities.Department.emps"/> -->
+	    <class-cache usage="read-write" class="com.cx.hibernate.entities.Employee"/>
 	</session-factory>
 </hibernate-configuration>

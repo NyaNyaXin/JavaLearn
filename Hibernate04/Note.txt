@@ -13,3 +13,16 @@ III.配置对哪些类使用hibernate的二级缓存
 <class-cache usage="read-write" class="com.cx.hibernate.entities.Employee"/>
 
 实际上也可以在.hbm.xml文件中配置对哪些类使用二级缓存，及二级缓存的策略是什么
+
+3)集合级别的二级缓存的配置
+I.配置对集合使用二级缓存
+<collection-cache usage="read-write" collection="com.cx.hibernate.entities.Department.emps"/>
+也可以在.hbm.xml文件中进行配置
+ <set name="emps" table="GG_EMPLOYEE" inverse="true" lazy="true">
+        	<cache usage="read-write"/>
+            <key>
+                <column name="DEPT_ID" />
+            </key>
+            <one-to-many class="com.cx.hibernate.entities.Employee" />
+ </set>
+II.注意：还需要配置集合中的元素对应的持久化类也使用二级缓存！否则将会多出n条sql语句

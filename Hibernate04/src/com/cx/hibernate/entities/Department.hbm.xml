@@ -13,6 +13,7 @@
         </property>
         
         <set name="emps" table="GG_EMPLOYEE" inverse="true" lazy="true">
+        	<cache usage="read-write"/>
             <key>
                 <column name="DEPT_ID" />
             </key>

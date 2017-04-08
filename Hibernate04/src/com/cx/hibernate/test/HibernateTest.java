@@ -49,47 +49,66 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
-	
+
 	@Test
-	public void testHibernateSecondLevelCache(){
-		Employee employee = (Employee) session.get(Employee.class, 1);
-		System.out.println(employee);
-		
+	public void testCollectionSecondLevelCache() {
+		Department department = (Department) session.get(Department.class, 1);
+		System.out.println(department.getName());
+		System.out.println(department.getEmps().size());
+
 		transaction.commit();
 		session.close();
-		
+
 		session = sessionFactory.openSession();
 		transaction = session.beginTransaction();
-		
-		Employee employee2 = (Employee) session.get(Employee.class, 1);
-		System.out.println(employee2);
-	}
-	@Test
-	public void testHQLUpdate(){
-		String hql = "DELETE FROM Department d where d.id = :id";
-		session.createQuery(hql).setInteger("id", 27).executeUpdate();
-	}
-	
-	@Test
-	public void testNativeSql(){
-		String sql = "INSERT INTO gg_department VALUES(?,?)";
-		
-		Query query = session.createSQLQuery(sql);
-		query.setInteger(0, 27).setString(1, "AAA").executeUpdate();
-		
+
+		Department department2 = (Department) session.get(Department.class, 1);
+		System.out.println(department2.getName());
+		System.out.println(department2.getEmps().size());
+
 	}
 
 	@Test
-	public void testQBC4(){
+	public void testHibernateSecondLevelCache() {
+		Employee employee = (Employee) session.get(Employee.class, 1);
+		System.out.println(employee);
+
+		transaction.commit();
+		session.close();
+
+		session = sessionFactory.openSession();
+		transaction = session.beginTransaction();
+
+		Employee employee2 = (Employee) session.get(Employee.class, 1);
+		System.out.println(employee2);
+	}
+
+	@Test
+	public void testHQLUpdate() {
+		String hql = "DELETE FROM Department d where d.id = :id";
+		session.createQuery(hql).setInteger("id", 27).executeUpdate();
+	}
+
+	@Test
+	public void testNativeSql() {
+		String sql = "INSERT INTO gg_department VALUES(?,?)";
+
+		Query query = session.createSQLQuery(sql);
+		query.setInteger(0, 27).setString(1, "AAA").executeUpdate();
+
+	}
+
+	@Test
+	public void testQBC4() {
 		Criteria criteria = session.createCriteria(Employee.class);
-		//1.添加排序
+		// 1.添加排序
 		criteria.addOrder(Order.asc("salary"));
 		criteria.addOrder(Order.desc("email"));
-		//2.添加翻页方法
+		// 2.添加翻页方法
 		int pageSize = 2;
-		int pageNum =1 ;
-		criteria.setFirstResult((pageNum-1)*pageSize).setMaxResults(pageSize).list();
-		
+		int pageNum = 1;
+		criteria.setFirstResult((pageNum - 1) * pageSize).setMaxResults(pageSize).list();
+
 	}
 
 	@Test

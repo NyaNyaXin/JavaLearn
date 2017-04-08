@@ -49,6 +49,19 @@ public class HibernateTest {
 		sessionFactory.close();
 	}
 	@Test
+	public void testUpdateTimestampCache(){
+		Query query = session.createQuery("FROM Employee");
+		query.setCacheable(true);
+		List<Employee> employees = query.list();
+		System.out.println(employees.size());
+		
+		Employee employee = (Employee) session.get(Employee.class, 1);
+		employee.setSalary(30000);
+		employees = query.list();
+		System.out.println(employees);
+		
+	}
+	@Test
 	public void testQueryCache(){
 		Query query = session.createQuery("FROM Employee");
 		query.setCacheable(true);

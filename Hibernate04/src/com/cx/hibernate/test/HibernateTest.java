@@ -2,6 +2,7 @@ package com.cx.hibernate.test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -47,6 +48,21 @@ public class HibernateTest {
 		transaction.commit();
 		session.close();
 		sessionFactory.close();
+	}
+	@Test
+	public void testQueryIterate(){
+		Department department = (Department) session.get(Department.class, 1);
+		System.out.println(department.getName());
+		System.out.println(department.getEmps().size());
+		
+		Query query = session.createQuery("FROM Employee e WHERE e.dept.id = 2");
+//		List<Employee> employees = query.list();
+//		System.out.println(employees.size());
+		
+		Iterator<Employee> empIt = query.iterate();
+		while(empIt.hasNext()){
+			System.out.println(empIt.next().getName());
+		}
 	}
 	@Test
 	public void testUpdateTimestampCache(){

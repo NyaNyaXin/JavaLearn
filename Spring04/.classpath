@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-core-4.2.4.Final.jar" sourcepath="F:/Framework/J2EEFramework/jeesite-master/doc/maven/repository/org/hibernate/hibernate-core/4.2.4.Final/hibernate-core-4.2.4.Final-sources.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/javassist-3.15.0-GA.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-logging-3.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.41-bin.jar"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.aopalliance-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/spring-aop-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-aspects-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-beans-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-build-src-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-context-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-context-support-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-core-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-expression-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-framework-bom-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-instrument-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-instrument-tomcat-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-jdbc-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-jms-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-messaging-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-orm-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-oxm-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-test-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-tx-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-web-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-webmvc-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-webmvc-portlet-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-websocket-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -49,6 +49,20 @@ public class HibernateTest {
 		session.close();
 		sessionFactory.close();
 	}
+	@Test
+	public void testHQLUpdate(){
+		String hql = "DELETE FROM Department d where d.id = :id";
+		session.createQuery(hql).setInteger("id", 27).executeUpdate();
+	}
+	
+	@Test
+	public void testNativeSql(){
+		String sql = "INSERT INTO gg_department VALUES(?,?)";
+		
+		Query query = session.createSQLQuery(sql);
+		query.setInteger(0, 27).setString(1, "AAA").executeUpdate();
+		
+	}
 
 	@Test
 	public void testQBC4(){

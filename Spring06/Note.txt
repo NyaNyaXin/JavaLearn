@@ -43,3 +43,32 @@ spring-webmvc-4.0.0.RELEASE.jar
 	</listener>
 	
 2.Spring如何整合Struts2
+
+1)整合目标使IOC容器来管理Struts2的Action
+
+2)如何进行整合
+
+Ⅰ.正常加入Struts2
+Ⅱ.在Spring的IOC容器中配置Struts2的Action
+注意：在IOC容器中配置Struts2的Action时，需要配置scope属性，其值必须为prototype 
+
+<bean class="com.cx.spring.struts2.actions.PersonAction" id="personAction" scope="prototype">
+	<property name="personService" ref="personService"></property>
+</bean>
+
+Ⅲ.配置Struts2的配置文件:
+action节点的class属性需要指向IOC容器中该bean的id
+
+<action name="person-save" class="personAction">
+ 	<result>/success.jsp</result>
+</action>
+
+Ⅳ.加入一个jar包：struts2-spring-plugin-2.3.15.3.jar
+
+3)整合原理：通过添加struts2-spring-plugin-2.3.15.3.jar以后，Struts2会先从IOC容器中获取Action的实例
+ if (appContext.containsBean(beanName)) {
+            o = appContext.getBean(beanName);
+        } else {
+            Class beanClazz = getClassInstance(beanName);
+            o = buildBean(beanClazz, extraContext);
+        }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+	<!-- 
+		Spring整合Struts2时，在Struts2中配置的Spring的Action的class需要指向IOC容器中该bean的id 
+	-->
+    <package name="default" namespace="/" extends="struts-default">
+ 		<action name="person-save" class="personAction">
+ 			<result>/success.jsp</result>
+ 		</action>
+    </package>
+
+
+   
+
+</struts>

@@ -1,71 +1,71 @@
-1.SpringÈçºÎÔÚWebÓ¦ÓÃÖĞÊ¹ÓÃ
+1.Springå¦‚ä½•åœ¨Webåº”ç”¨ä¸­ä½¿ç”¨
 
-1)jar°ü£ºĞèÒª¶îÍâ¼ÓÈë
-
-spring-web-4.0.0.RELEASE.jar
-spring-webmvc-4.0.0.RELEASE.jar
-
-2)SpringµÄÅäÖÃÎÄ¼ş£¬Ã»Ê²Ã´²»Í¬
-
-3)ÈçºÎ´´½¨IOCÈİÆ÷
-¢Ù.·ÇWebÓ¦ÓÃÔÚmain·½·¨ÖĞÖ±½Ó´´½¨
-¢Ú.WEBÓ¦ÓÃÓ¦¸ÃÔÚWebÓ¦ÓÃ±»·şÎñÆ÷¼ÓÔØÊ±¾Í´´½¨IOCÈİÆ÷
-
-ÔÚServletContextListener#contextInitialized(ServletContextEvent sce)·½·¨ÖĞ´´½¨IOCÈİÆ÷
-
-¢Û.ÔÚwebÓ¦ÓÃµÄÆäËû×é¼şÖĞÈçºÎ·ÃÎÊIOCÈİÆ÷
-
-ÔÚServletContextListener#contextInitialized(ServletContextEvent sce)·½·¨ÖĞ´´½¨IOCÈİÆ÷ºó£¬¿ÉÒÔ°ÑÆä·ÅÔÚServletContext
-(¼´ applicationÓò)µÄÒ»¸öÊôĞÔÖĞ
-
-¢Ü.Êµ¼ÊÉÏ£¬SpringÅäÖÃÎÄ¼şµÄÃû×ÖºÍÎ»ÖÃÓ¦¸ÃÒ²ÊÇ¿ÉÅäÖÃµÄ
-½«ÆäÅäÖÃµ½µ±Ç°webÓ¦ÓÃµÄ³õÊ¼»¯²ÎÊıÖĞ½ÏÎªºÏÊÊ
-
-4)ÔÚWEB»·¾³ÏÂÊ¹ÓÃSpring
-
-¢Ù.jar°ü£ºĞèÒª¶îÍâ¼ÓÈë
+1)jaråŒ…ï¼šéœ€è¦é¢å¤–åŠ å…¥
 
 spring-web-4.0.0.RELEASE.jar
 spring-webmvc-4.0.0.RELEASE.jar
 
-¢Ú.SpringµÄÅäÖÃÎÄ¼şºÍ·ÇWEBÓ¦ÓÃÃ»ÓĞÊ²Ã´²»Í¬
-¢Û.ĞèÒªÔÚweb.xmlÎÄ¼şÖĞ¼ÓÈëÈçÏÂÅäÖÃ
+2)Springçš„é…ç½®æ–‡ä»¶ï¼Œæ²¡ä»€ä¹ˆä¸åŒ
 
-	<!-- ÅäÖÃSpringÅäÖÃÎÄ¼şµÄÃû³ÆºÍÎ»ÖÃ -->
+3)å¦‚ä½•åˆ›å»ºIOCå®¹å™¨
+â‘ .éWebåº”ç”¨åœ¨mainæ–¹æ³•ä¸­ç›´æ¥åˆ›å»º
+â‘¡.WEBåº”ç”¨åº”è¯¥åœ¨Webåº”ç”¨è¢«æœåŠ¡å™¨åŠ è½½æ—¶å°±åˆ›å»ºIOCå®¹å™¨
+
+åœ¨ServletContextListener#contextInitialized(ServletContextEvent sce)æ–¹æ³•ä¸­åˆ›å»ºIOCå®¹å™¨
+
+â‘¢.åœ¨webåº”ç”¨çš„å…¶ä»–ç»„ä»¶ä¸­å¦‚ä½•è®¿é—®IOCå®¹å™¨
+
+åœ¨ServletContextListener#contextInitialized(ServletContextEvent sce)æ–¹æ³•ä¸­åˆ›å»ºIOCå®¹å™¨åï¼Œå¯ä»¥æŠŠå…¶æ”¾åœ¨ServletContext
+(å³ applicationåŸŸ)çš„ä¸€ä¸ªå±æ€§ä¸­
+
+â‘£.å®é™…ä¸Šï¼ŒSpringé…ç½®æ–‡ä»¶çš„åå­—å’Œä½ç½®åº”è¯¥ä¹Ÿæ˜¯å¯é…ç½®çš„
+å°†å…¶é…ç½®åˆ°å½“å‰webåº”ç”¨çš„åˆå§‹åŒ–å‚æ•°ä¸­è¾ƒä¸ºåˆé€‚
+
+4)åœ¨WEBç¯å¢ƒä¸‹ä½¿ç”¨Spring
+
+â‘ .jaråŒ…ï¼šéœ€è¦é¢å¤–åŠ å…¥
+
+spring-web-4.0.0.RELEASE.jar
+spring-webmvc-4.0.0.RELEASE.jar
+
+â‘¡.Springçš„é…ç½®æ–‡ä»¶å’ŒéWEBåº”ç”¨æ²¡æœ‰ä»€ä¹ˆä¸åŒ
+â‘¢.éœ€è¦åœ¨web.xmlæ–‡ä»¶ä¸­åŠ å…¥å¦‚ä¸‹é…ç½®
+
+	<!-- é…ç½®Springé…ç½®æ–‡ä»¶çš„åç§°å’Œä½ç½® -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 
-	<!-- Æô¶¯IOCÈİÆ÷µÄServletContextListener -->
+	<!-- å¯åŠ¨IOCå®¹å™¨çš„ServletContextListener -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-2.SpringÈçºÎÕûºÏStruts2
+2.Springå¦‚ä½•æ•´åˆStruts2
 
-1)ÕûºÏÄ¿±êÊ¹IOCÈİÆ÷À´¹ÜÀíStruts2µÄAction
+1)æ•´åˆç›®æ ‡ä½¿IOCå®¹å™¨æ¥ç®¡ç†Struts2çš„Action
 
-2)ÈçºÎ½øĞĞÕûºÏ
+2)å¦‚ä½•è¿›è¡Œæ•´åˆ
 
-¢ñ.Õı³£¼ÓÈëStruts2
-¢ò.ÔÚSpringµÄIOCÈİÆ÷ÖĞÅäÖÃStruts2µÄAction
-×¢Òâ£ºÔÚIOCÈİÆ÷ÖĞÅäÖÃStruts2µÄActionÊ±£¬ĞèÒªÅäÖÃscopeÊôĞÔ£¬ÆäÖµ±ØĞëÎªprototype 
+â… .æ­£å¸¸åŠ å…¥Struts2
+â…¡.åœ¨Springçš„IOCå®¹å™¨ä¸­é…ç½®Struts2çš„Action
+æ³¨æ„ï¼šåœ¨IOCå®¹å™¨ä¸­é…ç½®Struts2çš„Actionæ—¶ï¼Œéœ€è¦é…ç½®scopeå±æ€§ï¼Œå…¶å€¼å¿…é¡»ä¸ºprototype 
 
 <bean class="com.cx.spring.struts2.actions.PersonAction" id="personAction" scope="prototype">
 	<property name="personService" ref="personService"></property>
 </bean>
 
-¢ó.ÅäÖÃStruts2µÄÅäÖÃÎÄ¼ş:
-action½ÚµãµÄclassÊôĞÔĞèÒªÖ¸ÏòIOCÈİÆ÷ÖĞ¸ÃbeanµÄid
+â…¢.é…ç½®Struts2çš„é…ç½®æ–‡ä»¶:
+actionèŠ‚ç‚¹çš„classå±æ€§éœ€è¦æŒ‡å‘IOCå®¹å™¨ä¸­è¯¥beançš„id
 
 <action name="person-save" class="personAction">
  	<result>/success.jsp</result>
 </action>
 
-¢ô.¼ÓÈëÒ»¸öjar°ü£ºstruts2-spring-plugin-2.3.15.3.jar
+â…£.åŠ å…¥ä¸€ä¸ªjaråŒ…ï¼šstruts2-spring-plugin-2.3.15.3.jar
 
-3)ÕûºÏÔ­Àí£ºÍ¨¹ıÌí¼Óstruts2-spring-plugin-2.3.15.3.jarÒÔºó£¬Struts2»áÏÈ´ÓIOCÈİÆ÷ÖĞ»ñÈ¡ActionµÄÊµÀı
+3)æ•´åˆåŸç†ï¼šé€šè¿‡æ·»åŠ struts2-spring-plugin-2.3.15.3.jarä»¥åï¼ŒStruts2ä¼šå…ˆä»IOCå®¹å™¨ä¸­è·å–Actionçš„å®ä¾‹
  if (appContext.containsBean(beanName)) {
             o = appContext.getBean(beanName);
         } else {

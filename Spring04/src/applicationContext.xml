@@ -29,7 +29,17 @@
 		<!-- 配置数据源属性 -->
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 配置hibernate配置文件的位置及名称 -->
-		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+		<!-- <property name="configLocation" value="classpath:hibernate.cfg.xml"></property> -->
+		
+		<!-- 使用HibernateProperties属性来配置Hibernate原生的属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
 		<!-- 配置hibernate映射文件的位置及名称，可以使用通配符 -->
 		<property name="mappingLocations"
 			value="classpath:com/cx/spring/hibernate/entities/*.hbm.xml"></property>

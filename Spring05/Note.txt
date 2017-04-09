@@ -1,0 +1,23 @@
+1.Spring如何在Web应用中使用
+
+1)jar包：需要额外加入
+
+spring-web-4.0.0.RELEASE.jar
+spring-webmvc-4.0.0.RELEASE.jar
+
+2)Spring的配置文件，没什么不同
+
+3)如何创建IOC容器
+①.非Web应用在main方法中直接创建
+②.WEB应用应该在Web应用被服务器加载时就创建IOC容器
+
+在ServletContextListener#contextInitialized(ServletContextEvent sce)方法中创建IOC容器
+
+③.在web应用的其他组件中如何访问IOC容器
+
+在ServletContextListener#contextInitialized(ServletContextEvent sce)方法中创建IOC容器后，可以把其放在ServletContext
+(即 application域)的一个属性中
+
+④.实际上，Spring配置文件的名字和位置应该也是可配置的
+将其配置到当前web应用的初始化参数中较为合适
+2.Spring如何整合Struts2

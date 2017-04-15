@@ -1,4 +1,4 @@
-package com.cx.java8;
+package com.cx.java8.lambda;
 
 import java.io.FilterInputStream;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.cx.java8;
+package com.cx.java8.lambda;
 
 public class Employee {
 	private String name;
@@ -6,6 +6,9 @@ public class Employee {
 	private double salary;
 	public Employee() {
 		super();
+	}
+	public Employee(int age){
+		this.age = age;
 	}
 	public Employee(String name, int age, double salary) {
 		super();

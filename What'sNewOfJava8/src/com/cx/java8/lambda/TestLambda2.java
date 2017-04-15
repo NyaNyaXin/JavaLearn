@@ -1,4 +1,4 @@
-package com.cx.java8;
+package com.cx.java8.lambda;
 
 import java.util.ArrayList;
 import java.util.Comparator;

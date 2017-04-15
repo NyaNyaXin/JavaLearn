@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.cx.java8.Employee;
+import com.cx.java8.lambda.Employee;
 
 public class TestLambda {
 

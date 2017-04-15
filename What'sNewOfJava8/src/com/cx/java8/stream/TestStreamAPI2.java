@@ -101,8 +101,28 @@ public class TestStreamAPI2 {
 		}
 		return list.stream();
 	}
+	/**
+	 * 排序：
+	 * sorted()--自然排序(Comparable)
+	 * sorted(Comparator com)--定制排序(Comparator)
+	 * 
+	 * */
 	@Test
 	public void test7(){
+		List<String> list = Arrays.asList("ccc","aaa","bbb","eee","ddd");
+		list.stream().sorted().forEach(System.out::println);
+		
+		System.out.println("-------------------------------------");
+		
+		
+		employees.stream()
+				 .sorted((e1,e2)->{
+			if(e1.getAge().equals(e2.getAge())){
+				return e1.getName().compareTo(e2.getName());
+			}else{
+				return -e1.getAge().compareTo(e2.getAge());
+			}
+		}).forEach(System.out::println);
 		
 	}
 }

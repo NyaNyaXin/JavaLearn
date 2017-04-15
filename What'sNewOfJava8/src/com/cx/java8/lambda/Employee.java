@@ -2,20 +2,19 @@ package com.cx.java8.lambda;
 
 public class Employee {
 	private String name;
-	private int age;
+	private Integer age;
 	private double salary;
 	public Employee() {
 		super();
 	}
-	public Employee(int age){
-		this.age = age;
-	}
-	public Employee(String name, int age, double salary) {
+	
+	public Employee(String name, Integer age, double salary) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.salary = salary;
 	}
+
 	/**
 	 * @return the name
 	 */
@@ -31,13 +30,13 @@ public class Employee {
 	/**
 	 * @return the age
 	 */
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 	/**
 	 * @param age the age to set
 	 */
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	/**
@@ -53,20 +52,13 @@ public class Employee {
 		this.salary = salary;
 	}
 	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Employee [name=" + name + ", age=" + age + ", salary=" + salary + "]";
-	}
-	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + age;
+		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(salary);
@@ -85,7 +77,10 @@ public class Employee {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (age != other.age)
+		if (age == null) {
+			if (other.age != null)
+				return false;
+		} else if (!age.equals(other.age))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -96,7 +91,14 @@ public class Employee {
 			return false;
 		return true;
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", age=" + age + ", salary=" + salary + "]";
+	}
 	
 	
 }

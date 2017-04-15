@@ -1,5 +1,6 @@
 package com.cx.java8.stream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -68,5 +69,40 @@ public class TestStreamAPI2 {
 	@Test
 	public void test5(){
 		employees.stream().distinct().forEach(System.out::println);
+	}
+	
+	/*
+	 * 映射：
+	 * map--接收Lambda，将元素转换成其他形式或提取信息。接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素
+	 * flatMap--接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有的流连接成一个流
+	 * 
+	 * **/
+	@Test
+	public void test6(){
+		List<String> list = Arrays.asList("aaa","bbb","ccc","ddd","eee");
+		list.stream().map((str)->str.toUpperCase()).forEach(System.out::println);
+		System.out.println("_____________________");
+		employees.stream().map((Employee::getName)).forEach(System.out::println);
+		
+//		Stream<Stream<Character>> stream = list.stream().map(TestStreamAPI2::filterCharacter);
+//		stream.forEach((sm)->{
+//			sm.forEach(System.out::println);
+//		});
+		System.out.println("______________________________________");
+		Stream<Character> sm = list.stream().flatMap(TestStreamAPI2::filterCharacter);
+		sm.forEach(System.out::println);
+	}
+	
+	
+	public static Stream<Character> filterCharacter(String str){
+		List<Character> list = new ArrayList<>();
+		for(Character ch : str.toCharArray()){
+			list.add(ch);
+		}
+		return list.stream();
+	}
+	@Test
+	public void test7(){
+		
 	}
 }

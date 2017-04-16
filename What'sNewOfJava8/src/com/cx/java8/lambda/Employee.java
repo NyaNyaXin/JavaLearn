@@ -3,16 +3,31 @@ package com.cx.java8.lambda;
 public class Employee {
 	private String name;
 	private Integer age;
-	private double salary;
+	private Double salary;
+	private Status status;
+
 	public Employee() {
 		super();
 	}
-	
-	public Employee(String name, Integer age, double salary) {
+
+	public Employee(Integer age) {
+		super();
+		this.age = age;
+	}
+
+	public Employee(String name, Integer age, Double salary) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.salary = salary;
+	}
+
+	public Employee(String name, Integer age, Double salary, Status status) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.salary = salary;
+		this.status = status;
 	}
 
 	/**
@@ -21,37 +36,63 @@ public class Employee {
 	public String getName() {
 		return name;
 	}
+
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	/**
 	 * @return the age
 	 */
 	public Integer getAge() {
 		return age;
 	}
+
 	/**
-	 * @param age the age to set
+	 * @param age
+	 *            the age to set
 	 */
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+
 	/**
 	 * @return the salary
 	 */
-	public double getSalary() {
+	public Double getSalary() {
 		return salary;
 	}
+
 	/**
-	 * @param salary the salary to set
+	 * @param salary
+	 *            the salary to set
 	 */
-	public void setSalary(double salary) {
+	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
-	/* (non-Javadoc)
+
+	/**
+	 * @return the status
+	 */
+	public Status getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -60,12 +101,14 @@ public class Employee {
 		int result = 1;
 		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(salary);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((salary == null) ? 0 : salary.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -87,18 +130,27 @@ public class Employee {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (Double.doubleToLongBits(salary) != Double.doubleToLongBits(other.salary))
+		if (salary == null) {
+			if (other.salary != null)
+				return false;
+		} else if (!salary.equals(other.salary))
+			return false;
+		if (status != other.status)
 			return false;
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", age=" + age + ", salary=" + salary + "]";
+		return "Employee [name=" + name + ", age=" + age + ", salary=" + salary + ", status=" + status + "]";
 	}
-	
-	
+
+	public enum Status {
+		FREE, BUSY, VOCATION
+	}
 }

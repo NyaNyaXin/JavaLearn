@@ -1,5 +1,6 @@
 package com.cx.java8.datetimeapi;
 
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.Period;
 import java.time.ZoneOffset;
+import java.time.temporal.TemporalAdjusters;
 
 import org.junit.Test;
 
@@ -49,7 +51,7 @@ public class TestLocalDateTime {
 		System.out.println(ins2);
 	}
 
-	// 3.Duration:计算两个时间之间的间隔 	Period:计算两个日期之间的间隔
+	// 3.Duration:计算两个时间之间的间隔 Period:计算两个日期之间的间隔
 
 	@Test
 	public void test3() {
@@ -62,9 +64,9 @@ public class TestLocalDateTime {
 		Instant ins2 = Instant.now();
 		Duration du = Duration.between(ins1, ins2);
 		System.out.println(du.toMillis());
-		
+
 		System.out.println("**********************************");
-		
+
 		LocalTime lt1 = LocalTime.now();
 		try {
 			Thread.sleep(1000);
@@ -74,14 +76,42 @@ public class TestLocalDateTime {
 		LocalTime lt2 = LocalTime.now();
 		System.out.println(Duration.between(lt1, lt2).toMillis());
 	}
-	
+
 	@Test
-	public void test4(){
+	public void test4() {
 		LocalDate ld1 = LocalDate.now();
 		LocalDate ld2 = LocalDate.of(2017, 1, 1);
 		Period p = Period.between(ld2, ld1);
 		System.out.println(p.getYears());
 		System.out.println(p.getMonths());
 		System.out.println(p.getDays());
+	}
+
+	// TemporalAdjustor：时间校正器
+	@Test
+	public void test5() {
+		LocalDateTime ldt = LocalDateTime.now();
+		System.out.println(ldt);
+		LocalDateTime ldt2 = ldt.withDayOfMonth(10);
+		System.out.println(ldt2);
+		
+		LocalDateTime ldt3 = ldt.with(TemporalAdjusters.lastDayOfMonth());
+		System.out.println(ldt3);
+		
+		//自定义到下一个工作日
+		LocalDateTime ldt5 = ldt.with((l)->{
+			LocalDateTime ldt4 = (LocalDateTime)l;
+			DayOfWeek dow = ldt4.getDayOfWeek();
+			if(dow.equals(DayOfWeek.FRIDAY)){
+				return ldt4.plusDays(3);
+			}
+			else if(dow.equals(DayOfWeek.SATURDAY)){
+				return ldt4.plusDays(2);
+			}
+			else{
+				return ldt4.plusDays(1);
+			}
+		});
+		System.out.println(ldt5);
 	}
 }

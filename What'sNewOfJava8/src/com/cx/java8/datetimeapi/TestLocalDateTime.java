@@ -8,8 +8,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.Period;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -114,4 +118,39 @@ public class TestLocalDateTime {
 		});
 		System.out.println(ldt5);
 	}
+	
+	//DateTimeFormatter:格式化时间或日期
+	@Test
+	public void test6(){
+		DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE;
+		LocalDateTime ldt = LocalDateTime.now();
+		String s = ldt.format(dtf);
+		System.out.println(s);
+		
+		System.out.println("************************");
+		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss");
+		System.out.println(dtf2.format(ldt));
+		
+		LocalDateTime newdate = ldt.parse(s,dtf);
+		System.out.println(newdate);
+		
+	}
+	
+	//zonedDate、ZonedTime、ZonedDateTime
+	@Test
+	public void test7(){
+		Set<String> str = ZoneId.getAvailableZoneIds();
+		str.forEach(System.out::println);
+	}
+	
+	@Test
+	public void test8(){
+		LocalDateTime ldt = LocalDateTime.now(ZoneId.of("America/Marigot"));
+		System.out.println(ldt);
+		
+		LocalDateTime ldt2 = LocalDateTime.now(ZoneId.of("America/Marigot"));
+		ZonedDateTime zdt= ldt2.atZone(ZoneId.of("America/Marigot"));
+		System.out.println(zdt);
+	}
 }
+

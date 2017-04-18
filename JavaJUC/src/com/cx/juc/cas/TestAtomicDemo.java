@@ -1,4 +1,4 @@
-package com.cx.juc.volatiles;
+package com.cx.juc.cas;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

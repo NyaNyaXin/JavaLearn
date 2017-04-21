@@ -24,11 +24,17 @@ package com.cx.nio;
  * 四、通道之间的数据传输
  * transferFrom()
  * transferTo()
+ * 
+ * 五、分散（Scatter）与聚集（Gather）
+ * 分散读取（Scattering Reads）:将通道中的数据分散到多个缓冲区中
+ * 聚集写入（Gathering Writes）:将多个缓冲区中的数据聚集到通道中
  * **/
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -39,6 +45,33 @@ import java.nio.file.StandardOpenOption;
 import org.junit.Test;
 
 public class TestChannal {
+	//分散和聚集
+	@Test
+	public void test4() throws Exception{
+		RandomAccessFile raf1 = new RandomAccessFile("1.jpg", "rw");
+		//1.获取通道
+		FileChannel channel1 = raf1.getChannel();
+		//2.分配指定大小的缓冲区
+		ByteBuffer bf1 = ByteBuffer.allocate(100);
+		ByteBuffer bf2 = ByteBuffer.allocate(1024000);
+		//3.分散读取
+		ByteBuffer[] buss = {bf1,bf2};
+		channel1.read(buss);
+		
+		for(ByteBuffer byteBuffer:buss){
+			byteBuffer.flip();
+		}
+		System.out.println(new String(buss[0].array(),0,buss[0].limit()));
+		System.out.println("*******************************************");
+		System.out.println(new String(buss[1].array(),0,buss[1].limit()));
+		
+		//4.聚集写入
+		RandomAccessFile raf2 = new RandomAccessFile("2.jpg", "rw");
+		FileChannel channel2 = raf2.getChannel();
+		channel2.write(buss);
+		
+		
+	}
 	// 通道之间的数据传输(直接缓冲区)
 	@Test
 	public void test3() throws Exception{

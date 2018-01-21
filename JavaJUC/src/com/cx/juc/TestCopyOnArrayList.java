@@ -1,13 +1,10 @@
 package com.cx.juc;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /*
- * CopyOnArrayList/CopyOnArraySet:"写入并复制"
+ * CopyOnWriteArrayList/CopyOnWriteArraySet:"写入并复制"
  * 注意：
  * 添加操作多时，效率低，因为每次添加时都会进行复制，开销非常大。并发迭代操作时可以选择
  * */

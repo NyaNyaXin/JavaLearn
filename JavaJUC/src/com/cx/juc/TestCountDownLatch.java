@@ -8,11 +8,11 @@ import java.util.concurrent.CountDownLatch;
  * **/
 public class TestCountDownLatch {
 	public static void main(String[] args) {
-		final CountDownLatch latch = new CountDownLatch(5);
+		final CountDownLatch latch = new CountDownLatch(50);
 		LatchDemo ld = new LatchDemo(latch);
 
 		long start = System.currentTimeMillis();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 50; i++) {
 			new Thread(ld).start();
 		}
 
